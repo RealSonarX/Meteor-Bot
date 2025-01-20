@@ -1,15 +1,14 @@
-from discord import *
 from datetime import *
-from lists import *
-from random import *
+from random import randint
+
+from discord import Intents
 from discord.ext import commands
 
+from lists import *
 
 intents = Intents.all()
 
 bot = commands.Bot(command_prefix='.', intents=intents)
-
-
 
 
 @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
@@ -17,7 +16,7 @@ async def vengeance(ctx):
     channel = ctx.channel
     print(channel)
     for i in range(0, randint(5, 7)):
-  
+        #sleep(randint(0, 1))
         await channel.send("<@1095350739301310674>", delete_after=randint(0, 5))
 
 
@@ -34,18 +33,13 @@ async def newjoins(interaction, elim_date : str):
     print(i)
     for member in guild.members:
         e = (member.joined_at.date())
-
+        #print(e)
         if e >= i:
             print(member.name)
             new_joins.append(f"{member.name}")
     await interaction.response.send_message(f"Getting list of new users after {elim_date}! Check Python Terminal")
     complete_message = '\n'.join(new_joins)
     await channel.send(f"```{complete_message}```")
-
-
-async def timeout_user(member: Member):
-    await member.timeout(timedelta(seconds=5), reason=f"Joe")
-
 
 
 
@@ -66,9 +60,9 @@ async def on_message(message):
                     "karate movie")
 
 
-@bot.event
-async def on_member_update(before, after):
-    channel = bot.get_channel(956606255974199327)
+#@bot.event
+#async def on_member_update(before, after):
+#   channel = bot.get_channel(956606255974199327)
 
 @bot.event
 async def on_message_edit(before, after):
