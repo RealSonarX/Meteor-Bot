@@ -126,6 +126,6 @@ async def on_ready():
 # await interaction.response.send_message("command")
 
 
-token = 'MTMzMDEwNDM5OTkwNDY0MTA5Nw.G3U87y.QmfC0eRNgt_8UwB4qznxi7mQjvxiXSSoeF15yU'
+token = ''
 
 bot.run(token)
