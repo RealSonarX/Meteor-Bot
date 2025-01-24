@@ -31,5 +31,5 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ghcr.io/RealSonarX/meteor-bot:latest
+            ghcr.io/realsonarx/meteor-bot:latest
 
