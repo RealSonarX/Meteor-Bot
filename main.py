@@ -19,7 +19,6 @@ async def vengeance(ctx):
     channel = ctx.channel
     print(channel)
     for i in range(0, randint(5, 7)):
-        #sleep(randint(0, 1))
         await channel.send("<@1095350739301310674>", delete_after=randint(0, 5))
 
 
@@ -85,9 +84,10 @@ async def on_member_update(before, after):
     channel = bot.get_channel(956606255974199327)
     print(channel)
     if str(after) == '':
-       if str(after.nick) not in illu_names:
-           await channel.send(f'Nice try {after.mention}', delete_after=1)
-           await reset_username(after)
+        pass
+        #if str(after.nick) not in :
+        #    await channel.send(f'Nice try {after.mention}', delete_after=1)
+        #    await reset_username(after)
 
 
 #    if str(after) == '_the_aegis_':
@@ -95,7 +95,7 @@ async def on_member_update(before, after):
 #            await channel.send(f'Nice try {after.mention}', delete_after=1)
 #            await reset_username(after)
 
-# await channel.send(before)
+
 
 @bot.event
 async def on_message_edit(before, after):
@@ -118,15 +118,6 @@ async def on_ready():
     print(f'We have logged in as {bot.user}')
     await bot.tree.sync()
 
-    # await tree.sync(guild=(Object(id=906804682452779058)))
-
-
-# @tree.command(name = "rq", description = "a")
-# async def time(interaction):
-#    await interaction.response.send_message(f"Test")
-
-
-# await interaction.response.send_message("command")
 
 
 
