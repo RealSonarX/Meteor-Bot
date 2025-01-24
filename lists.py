@@ -1,3 +1,4 @@
+
 meta_knight = f" Meta Knight is everything, he's all you ever wanted \n You could win a set now, even if you've never " \
               f"won it \n Clashes he always wins, trade they ain't never gonna \n You want him forever any counter " \
               f"pick he's better on it \n Aerial is down, press it while I'm jumpin' up \n Then hit the B button like " \
@@ -15,3 +16,4 @@ roy = (
                     "your bitch ass long ass sword which has more range than my fucking boomerang like what the fuck "
                     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
                     "is brutally molested by 7 BBCs in an alleyway in Chicago.")
+
