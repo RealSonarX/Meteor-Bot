@@ -45,3 +45,4 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
+/src/meteor_bot/token.env

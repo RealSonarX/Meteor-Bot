@@ -1,13 +1,13 @@
 from discord import *
 from datetime import *
-from .lists import *
+from lists import *
 from os import getenv
 from random import *
 from discord.ext import commands
 from dotenv import load_dotenv
 
 def main():
-
+    hitlist = []
     intents = Intents.all()
 
     bot = commands.Bot(command_prefix='.', intents=intents)
@@ -17,6 +17,12 @@ def main():
 
 
     # tree = app_commands.CommandTree(bot)
+    @bot.tree.command(name='hitlist', description='Add them to the hitlist')
+    async def hitlist(ctx, member: str):
+        if member not in hitlist:
+            hitlist.append(str(member))
+        elif member in hitlist:
+            hitlist.remove(member)
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(ctx):
@@ -72,17 +78,17 @@ def main():
                 await message.channel.send('https://tenor.com/view/cat-but-heres-the-yapping-gif-5342913541658644726')
             elif 'aegis' in message.content.lower():
                 await message.channel.send("")
-            # elif str(message.author) == 'randomness8736':
-            #    await message.channel.send("I didn't ask", delete_after=5)
-            #    await timeout_user(message.author)
+            elif str(message.author) == 'randomness8736' and str(message.author) in hitlist:
+                await message.channel.send("I didn't ask", delete_after=5)
+                await timeout_user(message.author)
 
 
-    async def reset_username(member: Member):
-        if str(member) == '1mpy':
-            chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
-            print(chosen_username)
-            await member.edit(nick=chosen_username)
-
+    #async def reset_username(member: Member):
+    #    if str(member) == '1mpy':
+    #        chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
+    #        print(chosen_username)
+    #        await member.edit(nick=chosen_username)
+#
 
     @bot.event
     async def on_member_update(before, after):
