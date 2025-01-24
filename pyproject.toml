@@ -1,7 +1,6 @@
 [project]
 name = "meteor-bot"
 version = "0.1.0"
-readme = "README.md"
 requires-python = ">=3.9"
 packages = [
   {include = "meteor_bot", from = "src"},
