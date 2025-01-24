@@ -1,0 +1,20 @@
+[project]
+name = "meteor-bot"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.9"
+packages = [
+  {include = "meteor_bot", from = "src"},
+]
+dependencies = [
+    "discord-py>=2.4.0",
+    "python-dotenv>=1.0.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+main = "meteor_bot:main"
+
