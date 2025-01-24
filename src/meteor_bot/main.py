@@ -5,7 +5,7 @@ from os import getenv
 from random import *
 from discord.ext import commands
 from dotenv import load_dotenv
-
+#test
 def main():
 
     intents = Intents.all()
