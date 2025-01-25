@@ -22,7 +22,7 @@ def main():
         channel = interaction.channel
         if member not in hitlist:
             hitlist.append(str(member))
-            await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True)
+            await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True, delete_after=3)
             await channel.send(f"Target added to the HITLIST...")
         elif member in hitlist:
             hitlist.remove(member)
@@ -80,11 +80,12 @@ def main():
                         "karate movie")
             elif '<@&1328843759764639895>' in message.content:
                 await message.channel.send('https://tenor.com/view/cat-but-heres-the-yapping-gif-5342913541658644726')
-            elif 'aegis' in message.content.lower():
-                await message.channel.send("")
             elif str(message.author) == 'randomness8736' and str(message.author) in hitlist:
                 await message.channel.send("I didn't ask", delete_after=5)
                 await timeout_user(message.author)
+            elif str(message.author) == '_the_aegis_' and str(message.author) in hitlist and 'aegis' in message.content.lower():
+                await message.delete()
+                await message.channel.send(f"@586987213024133162 Did you mean Eagis?",delete_after=5)
 
 
     #async def reset_username(member: Member):
