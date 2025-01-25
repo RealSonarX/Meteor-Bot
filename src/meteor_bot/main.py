@@ -1,6 +1,6 @@
 from discord import *
 from datetime import *
-from lists import *
+from .lists import *
 from os import getenv
 from random import *
 from discord.ext import commands
@@ -18,12 +18,16 @@ def main():
 
     # tree = app_commands.CommandTree(bot)
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
-    async def hitlist(ctx, member: str):
+    async def hitlist_config(interaction, member: str):
+        channel = interaction.channel
         if member not in hitlist:
             hitlist.append(str(member))
+            await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True)
+            await channel.send(f"Target added to the HITLIST...")
         elif member in hitlist:
             hitlist.remove(member)
-
+            await interaction.response.send_message(f"Target removed from the HITLIST")
+            
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(ctx):
         channel = ctx.channel
