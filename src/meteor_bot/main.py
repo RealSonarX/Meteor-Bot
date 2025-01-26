@@ -6,6 +6,7 @@ from random import *
 from discord.ext import commands
 from dotenv import load_dotenv
 
+
 def main():
     hitlist = []
     intents = Intents.all()
@@ -14,10 +15,19 @@ def main():
 
     load_dotenv("token.env")
     TOKEN = getenv('TOKEN')
+    pt = ["squirtle", "ivysaur", "charizard"]
 
     @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
     async def ufd(interaction, character: str, move: str):
-        await interaction.response.send_message(f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
+        for i in pt:
+            if i == character:
+                await interaction.response.send_message(
+                    f"https://ultimateframedata.com/hitboxes/pt_{character.title()}/{character.title()}{move.title()}.gif \n")
+            else:
+
+                await interaction.response.send_message(
+                f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
+                break
 
     # tree = app_commands.CommandTree(bot)
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
@@ -30,7 +40,7 @@ def main():
         elif member in hitlist:
             hitlist.remove(member)
             await interaction.response.send_message(f"Target removed from the HITLIST")
-            
+
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(ctx):
         channel = ctx.channel
@@ -38,8 +48,8 @@ def main():
         for i in range(0, randint(5, 7)):
             await channel.send("<@1095350739301310674>", delete_after=randint(0, 5))
 
-    #@bot.tree.command(name='update_h2h', description='Create or update a head to head')
-    #async def create_h2h(interaction, user1, user2):
+    # @bot.tree.command(name='update_h2h', description='Create or update a head to head')
+    # async def create_h2h(interaction, user1, user2):
     #    pass
 
     @bot.tree.command(name='newjoins', description='Find new joins')
@@ -63,10 +73,8 @@ def main():
         complete_message = '\n'.join(new_joins)
         await channel.send(f"```{complete_message}```")
 
-
     async def timeout_user(member: Member):
         await member.timeout(timedelta(seconds=5), reason=f"Joe")
-
 
     @bot.event
     async def on_message(message):
@@ -89,17 +97,17 @@ def main():
             elif str(message.author) == 'randomness8736' and str(message.author) in hitlist:
                 await message.channel.send("I didn't ask", delete_after=5)
                 await timeout_user(message.author)
-            elif str(message.author) == '_the_aegis_' and str(message.author) in hitlist and 'aegis' in message.content.lower():
+            elif str(message.author) == '_the_aegis_' and str(
+                    message.author) in hitlist and 'aegis' in message.content.lower():
                 await message.delete()
-                await message.channel.send(f"@586987213024133162 Did you mean Eagis?",delete_after=5)
+                await message.channel.send(f"@586987213024133162 Did you mean Eagis?", delete_after=5)
 
-
-    #async def reset_username(member: Member):
+    # async def reset_username(member: Member):
     #    if str(member) == '1mpy':
     #        chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
     #        print(chosen_username)
     #        await member.edit(nick=chosen_username)
-#
+    #
 
     @bot.event
     async def on_member_update(before, after):
@@ -111,12 +119,10 @@ def main():
             #    await channel.send(f'Nice try {after.mention}', delete_after=1)
             #    await reset_username(after)
 
-
     #    if str(after) == '_the_aegis_':
     #        if str(after.nick) not in illu_names and before.nick != after.nick:
     #            await channel.send(f'Nice try {after.mention}', delete_after=1)
     #            await reset_username(after)
-
 
     @bot.event
     async def on_message_edit(before, after):
@@ -125,19 +131,16 @@ def main():
         if before.content != after.content and randint(0, 15) == 3:
             await channel.send(f"I saw that {author.mention}", delete_after=0.1)
 
-
     @bot.event
     async def on_member_remove(member):
         channel = bot.get_channel(956606255974199327)
         await channel.send(f"{member} finally buggered off")
         # print(channel)
 
-
     @bot.event
     async def on_ready():
         print(f'We have logged in as {bot.user}')
         await bot.tree.sync()
-
 
     bot.run(TOKEN)
 
