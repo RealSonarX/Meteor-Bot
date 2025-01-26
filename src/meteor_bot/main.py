@@ -15,6 +15,9 @@ def main():
     load_dotenv("token.env")
     TOKEN = getenv('TOKEN')
 
+    @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
+    async def ufd(interaction, character: str, move: str):
+        await interaction.response.send_message(f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
 
     # tree = app_commands.CommandTree(bot)
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
@@ -35,6 +38,9 @@ def main():
         for i in range(0, randint(5, 7)):
             await channel.send("<@1095350739301310674>", delete_after=randint(0, 5))
 
+    #@bot.tree.command(name='update_h2h', description='Create or update a head to head')
+    #async def create_h2h(interaction, user1, user2):
+    #    pass
 
     @bot.tree.command(name='newjoins', description='Find new joins')
     async def newjoins(interaction, elim_date: str):
