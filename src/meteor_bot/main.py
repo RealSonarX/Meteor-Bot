@@ -29,7 +29,6 @@ def main():
                 f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
                 break
 
-    # tree = app_commands.CommandTree(bot)
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
         channel = interaction.channel
