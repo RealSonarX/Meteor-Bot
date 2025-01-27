@@ -1,6 +1,6 @@
 from discord import *
 from datetime import *
-from lists import *
+from .lists import *
 from os import getenv
 from random import *
 from discord.ext import commands
