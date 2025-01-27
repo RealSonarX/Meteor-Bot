@@ -1,6 +1,6 @@
 from discord import *
 from datetime import *
-from .lists import *
+from lists import *
 from os import getenv
 from random import *
 from discord.ext import commands
@@ -16,18 +16,19 @@ def main():
     load_dotenv("token.env")
     TOKEN = getenv('TOKEN')
     pt = ["squirtle", "ivysaur", "charizard"]
+    shorthands = {"ganon": "ganondorf", "brawler": "mii_brawler", "krool": "kingkrool", "dk": "donkey_kong"}
+    miis = ["mii_brawler", "mii_gunner", "mii_swordfighter"]
+
 
     @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
     async def ufd(interaction, character: str, move: str):
-        for i in pt:
-            if i == character:
-                await interaction.response.send_message(
-                    f"https://ultimateframedata.com/hitboxes/pt_{character.title()}/{character.title()}{move.title()}.gif \n")
-            else:
+        if character.lower() in pt:
+            await interaction.response.send_message(
+                f"https://ultimateframedata.com/hitboxes/pt_{character.title()}/{character.title()}{move.title()}.gif \n")
+        else:
 
-                await interaction.response.send_message(
+            await interaction.response.send_message(
                 f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
-                break
 
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
@@ -71,6 +72,8 @@ def main():
         await interaction.response.send_message(f"Getting list of new users after {elim_date}! Check Python Terminal")
         complete_message = '\n'.join(new_joins)
         await channel.send(f"```{complete_message}```")
+
+
 
     async def timeout_user(member: Member):
         await member.timeout(timedelta(seconds=5), reason=f"Joe")
