@@ -103,11 +103,11 @@ def main():
             elif str(message.author) == 'randomness8736' and str(message.author) in hitlist:
                 await message.channel.send("I didn't ask", delete_after=5)
                 await timeout_user(message.author)
-            elif str(message.author) == '_the_aegis_' and 'aegis' in message.content.lower():
+            elif 'aegis' in message.content.lower() and message.author in hitlist:
                 await message.delete()
 
                 #@586987213024133162
-                await message.channel.send(f" Did you mean Eajis?", delete_after=5)
+                await message.channel.send(f"<@{message.author.id}> Did you mean Eajis?", delete_after=5)
 
     # async def reset_username(member: Member):
     #    if str(member) == '1mpy':
