@@ -9,8 +9,10 @@ from dotenv import load_dotenv
 
 def main():
     intents = Intents.all()
-    with open("hitlist.txt", "r") as f:
-        hitlist = f.read().splitlines()
+    def get_hitlist():
+        with open("hitlist.txt", "r") as f:
+            hitlist = f.read().splitlines()
+        return hitlist
 
     bot = commands.Bot(command_prefix='.', intents=intents)
 
@@ -32,19 +34,20 @@ def main():
 
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
+
         channel = interaction.channel
-        if member not in hitlist:
-            hitlist.append(str(member))
+        if member not in get_hitlist():
+            get_hitlist().append(str(member))
             await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True, delete_after=3)
             await channel.send(f"Target added to the HITLIST...")
             with open("hitlist.txt", "w") as f:
-                for i in hitlist:
+                for i in get_hitlist():
                     f.write(f"{i}\n")
-        elif member in hitlist:
-            hitlist.remove(member)
+        elif member in get_hitlist():
+            get_hitlist().remove(member)
             await interaction.response.send_message(f"Target removed from the HITLIST")
             with open("hitlist.txt", "w") as f:
-                for i in hitlist:
+                for i in get_hitlist():
                     f.write(f"{i}\n")
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
@@ -100,10 +103,10 @@ def main():
                         "karate movie")
             elif '<@&1328843759764639895>' in message.content:
                 await message.channel.send('https://tenor.com/view/cat-but-heres-the-yapping-gif-5342913541658644726')
-            elif str(message.author) == 'randomness8736' and str(message.author) in hitlist:
+            elif str(message.author) == 'randomness8736' and str(message.author) in get_hitlist():
                 await message.channel.send("I didn't ask", delete_after=5)
                 await timeout_user(message.author)
-            elif 'aegis' in message.content.lower() and message.author in hitlist:
+            elif 'aegis' in message.content.lower() and str(message.author) in get_hitlist():
                 await message.delete()
 
                 #@586987213024133162
