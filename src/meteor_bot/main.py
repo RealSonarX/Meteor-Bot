@@ -50,7 +50,8 @@ def main():
             with open("hitlist.txt", "w") as f:
                 for i in get_hitlist():
                     f.write(f"{i}\n")
-
+        elif member == 'view':
+            await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(ctx):
         channel = ctx.channel
