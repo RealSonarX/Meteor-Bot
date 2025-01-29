@@ -1,6 +1,6 @@
 from discord import *
 from datetime import *
-from .lists import *
+from lists import *
 from os import getenv
 from random import *
 from discord.ext import commands
@@ -144,4 +144,9 @@ def main():
 
 
 if __name__ == "__main__":
+    try:
+        f = open("hitlist.txt", "x")
+        f.close()
+    except:
+        pass
     main()
