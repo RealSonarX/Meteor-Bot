@@ -34,14 +34,15 @@ def main():
 
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
-
         channel = interaction.channel
         if member not in get_hitlist():
-            get_hitlist().append(str(member))
+            hitlist = get_hitlist()
+            hitlist.append(str(member))
+            temp_hitlist = hitlist
             await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True, delete_after=3)
             await channel.send(f"Target added to the HITLIST...")
             with open("hitlist.txt", "w") as f:
-                for i in get_hitlist():
+                for i in temp_hitlist:
                     f.write(f"{i}\n")
         elif member in get_hitlist():
             get_hitlist().remove(member)
@@ -88,6 +89,7 @@ def main():
     @bot.event
     async def on_message(message):
         # print(message.author)
+
         print(f"New Message : {message.content}")
         if str(message.author) != 'Meteor#1277':
 
@@ -111,6 +113,8 @@ def main():
 
                 #@586987213024133162
                 await message.channel.send(f"<@{message.author.id}> Did you mean Eajis?", delete_after=5)
+            #else:
+            #    await message.channel.send("lmk who wins")
 
     # async def reset_username(member: Member):
     #    if str(member) == '1mpy':
