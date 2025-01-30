@@ -14,7 +14,9 @@ def main():
     def get_hitlist():
         try:
             f = open("hitlist.txt", "x")
+            hitlist = f.read().splitlines()
             f.close()
+            return hitlist
         except:
             with open("hitlist.txt", "r") as f:
                 hitlist = f.read().splitlines()
