@@ -1,18 +1,24 @@
-from discord import *
 from datetime import *
-from .lists import *
 from os import getenv
 from random import *
+
+from discord import *
 from discord.ext import commands
 from dotenv import load_dotenv
+
+from .lists import *
 
 
 def main():
     intents = Intents.all()
     def get_hitlist():
-        with open("hitlist.txt", "r") as f:
-            hitlist = f.read().splitlines()
-        return hitlist
+        try:
+            f = open("hitlist.txt", "x")
+            f.close()
+        except:
+            with open("hitlist.txt", "r") as f:
+                hitlist = f.read().splitlines()
+            return hitlist
 
     bot = commands.Bot(command_prefix='.', intents=intents)
 
@@ -152,13 +158,10 @@ def main():
         print(f'We have logged in as {bot.user}')
         await bot.tree.sync()
 
+    get_hitlist()
     bot.run(TOKEN)
 
 
 if __name__ == "__main__":
-    try:
-        f = open("hitlist.txt", "x")
-        f.close()
-    except:
-        pass
+
     main()
