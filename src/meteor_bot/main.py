@@ -125,7 +125,7 @@ def main():
                 await message.delete()
 
                 #@586987213024133162
-                await message.channel.send(f"<@{message.author.id}> Did you mean Eajis?", delete_after=5)
+                await message.channel.send(f"<@{message.author.id}> Did you mean Pithra?", delete_after=5)
             #else:
             #    await message.channel.send("lmk who wins")
 
