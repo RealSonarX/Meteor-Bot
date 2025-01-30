@@ -34,24 +34,28 @@ def main():
 
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
-        channel = interaction.channel
-        if member not in get_hitlist():
-            hitlist = get_hitlist()
-            hitlist.append(str(member))
-            temp_hitlist = hitlist
-            await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True, delete_after=3)
-            await channel.send(f"Target added to the HITLIST...")
-            with open("hitlist.txt", "w") as f:
-                for i in temp_hitlist:
-                    f.write(f"{i}\n")
-        elif member in get_hitlist():
-            get_hitlist().remove(member)
-            await interaction.response.send_message(f"Target removed from the HITLIST")
-            with open("hitlist.txt", "w") as f:
-                for i in get_hitlist():
-                    f.write(f"{i}\n")
-        elif member == 'view':
-            await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
+        try:
+
+            channel = interaction.channel
+            if member not in get_hitlist():
+                hitlist = get_hitlist()
+                hitlist.append(str(member))
+                temp_hitlist = hitlist
+                await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True, delete_after=3)
+                await channel.send(f"Target added to the HITLIST...")
+                with open("hitlist.txt", "w") as f:
+                    for i in temp_hitlist:
+                        f.write(f"{i}\n")
+            elif member in get_hitlist():
+                get_hitlist().remove(member)
+                await interaction.response.send_message(f"Target removed from the HITLIST")
+                with open("hitlist.txt", "w") as f:
+                    for i in get_hitlist():
+                        f.write(f"{i}\n")
+            elif member == 'view':
+                await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
+        except Exception as e:
+            await interaction.response.send_message(f"{e}")
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(ctx):
         channel = ctx.channel
