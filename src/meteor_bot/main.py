@@ -102,12 +102,15 @@ def main():
     @bot.event
     async def on_message(message):
         # print(message.author)
-
-        print(f"New Message : {message.content}")
+        quotes = bot.get_channel(931598462879944764)
+        print(f"New Message from {str(message.author)}: {message.content}")
         if str(message.author) != 'Meteor#1277':
-
+            if message.channel == quotes and message.attachments == []:
+                await message.delete()
+                await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
+
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
@@ -159,6 +162,9 @@ def main():
     async def on_ready():
         print(f'We have logged in as {bot.user}')
         await bot.tree.sync()
+        print(bot.get_all_members())
+        channel = bot.get_channel(956606255974199327)
+        #await channel.send(f"")
 
     get_hitlist()
     bot.run(TOKEN)
