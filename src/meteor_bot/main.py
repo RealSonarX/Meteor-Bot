@@ -186,7 +186,7 @@ def main():
             print("Done!")
         channel = bot.get_channel(956606255974199327)
         #await channel.send(f"Leave me be. ")
-        send_messagee.start()
+        #send_messagee.start()
    # async
     get_hitlist()
     bot.run(TOKEN)
