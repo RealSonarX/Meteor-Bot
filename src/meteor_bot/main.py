@@ -1,7 +1,7 @@
 from datetime import *
 from os import getenv
 from random import *
-from aioconsole import *
+#from aioconsole import *
 from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
@@ -30,12 +30,12 @@ def main():
     shorthands = {"ganon": "ganondorf", "brawler": "mii_brawler", "krool": "kingkrool", "dk": "donkey_kong", "donkey kong": "donkey_kong"}
     miis = ["mii_brawler", "mii_gunner", "mii_swordfighter"]
 
-    @tasks.loop(seconds=3)
-    async def send_messagee():
-        channel = bot.get_channel(956606255974199327)
-        msg = await ainput("Input your message: ")
-        await channel.send(f"{msg}")
-        #await channel.send(f"{messagee}")
+    #@tasks.loop(seconds=3)
+    #async def send_messagee():
+    #    channel = bot.get_channel(956606255974199327)
+    #    msg = await ainput("Input your message: ")
+    #    await channel.send(f"{msg}")
+    #    #await channel.send(f"{messagee}")
 
 
     @bot.tree.command(name='test', description='test')
