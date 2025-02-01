@@ -1,13 +1,14 @@
 from datetime import *
 from os import getenv
 from random import *
-#from aioconsole import *
+
 from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
 from lists import *
 
+#from aioconsole import *
 
 def main():
     intents = Intents.all()
