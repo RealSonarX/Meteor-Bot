@@ -11,6 +11,7 @@ from .lists import *
 #from aioconsole import *
 
 def main():
+    dev_env = False
     intents = Intents.all()
     def get_hitlist():
         try:
@@ -33,12 +34,14 @@ def main():
 
     @tasks.loop(seconds=3)
     async def send_messagee():
-        try:
-            channel = bot.get_channel(956606255974199327)
-            #msg = await ainput("Input your message: ")
-            #await channel.send(f"{msg}")
-        except:
-            pass
+        if dev_env:
+
+            try:
+                channel = bot.get_channel(956606255974199327)
+                msg = await ainput("Input your message: ")
+                await channel.send(f"{msg}")
+            except:
+                pass
         #await channel.send(f"{messagee}")
 
 
