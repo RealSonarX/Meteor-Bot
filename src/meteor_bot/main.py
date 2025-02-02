@@ -6,7 +6,7 @@ from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from lists import *
+from .lists import *
 
 #from aioconsole import *
 
@@ -31,17 +31,20 @@ def main():
     shorthands = {"ganon": "ganondorf", "brawler": "mii_brawler", "krool": "kingkrool", "dk": "donkey_kong", "donkey kong": "donkey_kong"}
     miis = ["mii_brawler", "mii_gunner", "mii_swordfighter"]
 
-    #@tasks.loop(seconds=3)
-    #async def send_messagee():
-    #    channel = bot.get_channel(956606255974199327)
-    #    msg = await ainput("Input your message: ")
-    #    await channel.send(f"{msg}")
-    #    #await channel.send(f"{messagee}")
+    @tasks.loop(seconds=3)
+    async def send_messagee():
+        try:
+            channel = bot.get_channel(956606255974199327)
+            #msg = await ainput("Input your message: ")
+            #await channel.send(f"{msg}")
+        except:
+            pass
+        #await channel.send(f"{messagee}")
 
 
-    @bot.tree.command(name='test', description='test')
-    async def test(interaction, member: Member):
-        await interaction.response.send_message(f"{(str(member))}")
+    #@bot.tree.command(name='test', description='test')
+    #async def test(interaction, member: Member):
+    #    await interaction.response.send_message(f"{(str(member))}")
     @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
     async def ufd(interaction, character: str, move: str):
         if character.lower() in pt:
@@ -77,11 +80,10 @@ def main():
         except Exception as e:
             await interaction.response.send_message(f"{e}")
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
-    async def vengeance(ctx):
-        channel = ctx.channel
+    async def vengeance(ctx, channel: TextChannel):
         print(channel)
         for i in range(0, randint(5, 7)):
-            await channel.send("<@1095350739301310674>", delete_after=randint(0, 5))
+            await channel.send("<@336961692200206336>", delete_after=randint(0, 5))
 #
     #@bot.tree.command(name='update_h2h', description='Create or update a head to head')
     #async def create_h2h(interaction, user1, user2):
@@ -115,7 +117,7 @@ def main():
     async def on_message(message):
         # print(message.author)
         quotes = bot.get_channel(931598462879944764)
-        print(f"New Message from {str(message.author)}: {message.content}")
+        print(f"#{message.channel}  {str(message.author)}: {message.content}")
         if str(message.author) != 'Meteor#1277':
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
@@ -166,7 +168,11 @@ def main():
         channel = before.channel
         if before.content != after.content and randint(0, 15) == 3:
             await channel.send(f"I saw that {author.mention}", delete_after=0.1)
-#
+
+    @bot.event
+    async def on_reaction_add(reaction, user):
+        print(f"{user} just reacted with {reaction} to message : {reaction.message.content}")
+
     @bot.event
     async def on_member_remove(member):
         channel = bot.get_channel(956606255974199327)
@@ -183,11 +189,11 @@ def main():
                 # print(str(i.name)) # Controls if you need everyone's username
                 #if str(i.name) == '_the_aegis_':
 
-                print(f"{str(i.name)} id is {i.id}")
+                print(f"{str(i.name)} ({i.status}) id is {i.id}")
             print("Done!")
         channel = bot.get_channel(956606255974199327)
         #await channel.send(f"Leave me be. ")
-        #send_messagee.start()
+        send_messagee.start()
    # async
     get_hitlist()
     bot.run(TOKEN)
