@@ -118,7 +118,6 @@ def main():
 #
     @bot.event
     async def on_message(message):
-        # print(message.author)
         quotes = bot.get_channel(931598462879944764)
         print(f"#{message.channel}  {str(message.author)}: {message.content}")
         if str(message.author) != 'Meteor#1277':
@@ -184,7 +183,7 @@ def main():
 
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
             print("Done!")
-            send_messagee.start()
+        send_messagee.start()
 
    # async
     get_hitlist()
