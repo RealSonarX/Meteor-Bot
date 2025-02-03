@@ -6,12 +6,18 @@ from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from .lists import *
+load_dotenv("token.env")
+DEV_ENV = bool(getenv('DEV_ENV'))
+if DEV_ENV:
 
-#from aioconsole import *
+    from lists import *
+
+    from aioconsole import *
+else:
+    from .lists import *
 
 def main():
-    dev_env = False
+
     intents = Intents.all()
     def get_hitlist():
         try:
@@ -26,21 +32,22 @@ def main():
 
     bot = commands.Bot(command_prefix='.', intents=intents)
 
-    load_dotenv("token.env")
+
     TOKEN = getenv('TOKEN')
+
     pt = ["squirtle", "ivysaur", "charizard"]
     shorthands = {"ganon": "ganondorf", "brawler": "mii_brawler", "krool": "kingkrool", "dk": "donkey_kong", "donkey kong": "donkey_kong"}
     miis = ["mii_brawler", "mii_gunner", "mii_swordfighter"]
 
     @tasks.loop(seconds=3)
     async def send_messagee():
-        if dev_env:
+        if DEV_ENV:
 
             try:
                 channel = bot.get_channel(956606255974199327)
                 msg = await ainput("Input your message: ")
                 await channel.send(f"{msg}")
-            except:
+            except Exception:
                 pass
         #await channel.send(f"{messagee}")
 
@@ -133,11 +140,6 @@ def main():
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
-            elif ':jojer:' in message.content:
-                if randint(0, 5) == 1:
-                    await message.channel.send(
-                        "Whal's literally built like the guy who gets his ass kicked by the mc at the beginning of a "
-                        "karate movie")
             elif '<@&1328843759764639895>' in message.content:
                 await message.channel.send('https://tenor.com/view/cat-but-heres-the-yapping-gif-5342913541658644726')
             elif str(message.author) == 'randomness8736' and str(message.author) in get_hitlist():
@@ -161,7 +163,7 @@ def main():
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        print(channel)
+        #print(channel)
         if str(after) == '':
             pass
 #
@@ -180,7 +182,7 @@ def main():
     async def on_member_remove(member):
         channel = bot.get_channel(956606255974199327)
         await channel.send(f"{member} finally buggered off")
-#
+
     @bot.event
     async def on_ready():
 
