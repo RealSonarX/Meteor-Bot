@@ -129,7 +129,7 @@ def main():
 #
             elif any(i in message.content.lower() for i in american_words):
                 await message.delete()
-                await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv", delete_after=3)
+                await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv", delete_after=2)
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
