@@ -47,12 +47,8 @@ def main():
                 await channel.send(f"{msg}")
             except Exception:
                 pass
-        #await channel.send(f"{messagee}")
 
 
-    #@bot.tree.command(name='test', description='test')
-    #async def test(interaction, member: Member):
-    #    await interaction.response.send_message(f"{(str(member))}")
     @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
     async def ufd(interaction, character: str, move: str):
         if character.lower() in pt:
@@ -110,7 +106,6 @@ def main():
         print(i)
         for member in guild.members:
             e = (member.joined_at.date())
-            # print(e)
             if e >= i:
                 print(member.name)
                 new_joins.append(f"{member.name}")
@@ -146,11 +141,7 @@ def main():
                 await timeout_user(message.author)
             elif 'aegis' in message.content.lower() and str(message.author) in get_hitlist():
                 await message.delete()
-#
-               #@586987213024133162
                 await message.channel.send(f"<@{message.author.id}> Did you mean Pithra?", delete_after=5)
-            #else:
-            #   await message.channel.send("lmk who wins")
 #
     #async def reset_username(member: Member):
     #   if str(member) == '1mpy':
@@ -190,14 +181,10 @@ def main():
 
         if DEV_ENV == 'True':
             for i in bot.get_all_members():
-                # print(str(i.name)) # Controls if you need everyone's username
-                #if str(i.name) == '_the_aegis_':
 
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
             print("Done!")
             send_messagee.start()
-        channel = bot.get_channel(956606255974199327)
-        #await channel.send(f"Leave me be. ")
 
    # async
     get_hitlist()
