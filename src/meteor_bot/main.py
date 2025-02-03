@@ -7,11 +7,9 @@ from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
 load_dotenv("token.env")
-DEV_ENV = bool(getenv('DEV_ENV'))
-if DEV_ENV:
-
+DEV_ENV = (getenv('DEV_ENV'))
+if DEV_ENV == 'True':
     from lists import *
-
     from aioconsole import *
 else:
     from .lists import *
@@ -41,7 +39,7 @@ def main():
 
     @tasks.loop(seconds=3)
     async def send_messagee():
-        if DEV_ENV:
+        if DEV_ENV == 'True':
 
             try:
                 channel = bot.get_channel(956606255974199327)
@@ -135,8 +133,9 @@ def main():
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
 #
-            elif 'pookie' in message.content.lower() or 'rex' in message.content.lower():
+            elif any(i in message.content.lower() for i in american_words):
                 await message.delete()
+                await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv", delete_after=3)
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
@@ -188,17 +187,18 @@ def main():
 
         await bot.tree.sync()
         print(f'We have logged in as {bot.user}')
-        searching_for_id = True
-        if searching_for_id:
+
+        if DEV_ENV == 'True':
             for i in bot.get_all_members():
                 # print(str(i.name)) # Controls if you need everyone's username
                 #if str(i.name) == '_the_aegis_':
 
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
             print("Done!")
+            send_messagee.start()
         channel = bot.get_channel(956606255974199327)
         #await channel.send(f"Leave me be. ")
-        send_messagee.start()
+
    # async
     get_hitlist()
     bot.run(TOKEN)

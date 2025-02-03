@@ -16,44 +16,6 @@ roy = (
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.")
 
-# liste = [
-#    app_commands.Choice(name="Banjo and Kazooie", value="banjo_and_kazooie"),
-#    app_commands.Choice(name="Bayonetta", value="bayonetta"),
-#    app_commands.Choice(name="Bowser", value="bowser"),
-#    app_commands.Choice(name="Bowser Jr", value="bowser_jr"),
-#    app_commands.Choice(name="Byleth", value="byleth"),
-#    app_commands.Choice(name="Captain Falcon", value="captain_falcon"),
-#    app_commands.Choice(name="Chrom", value="chrom"),
-#    app_commands.Choice(name="Cloud", value="cloud"),
-#    app_commands.Choice(name="Corrin", value="corrin"),
-#    app_commands.Choice(name="Daisy", value="daisy"),
-#    app_commands.Choice(name="Dark Pit", value="dark_pit"),
-#    app_commands.Choice(name="Dark Samus", value="dark_samus"),
-#    app_commands.Choice(name="Diddy Kong", value="diddy_kong"),
-#    app_commands.Choice(name="Donkey Kong", value="donkey_kong"),
-#    app_commands.Choice(name="Dr Mario", value="dr_mario"),
-#    app_commands.Choice(name="Duck Hunt", value="duck_hunt"),
-#    app_commands.Choice(name="Falco", value="falco"),
-#    # app_commands.Choice(name="Fox", value="fox"),
-#    # app_commands.Choice(name="Ganondorf", value="ganondorf"),
-#    # app_commands.Choice(name="Greninja", value="greninja"),
-#    # app_commands.Choice(name="Hero", value="hero"),
-#    ## app_commands.Choice(name="Ice Climbers", value=""),
-#    # app_commands.Choice(name="Ike", value="ike"),
-#    # app_commands.Choice(name="Incineroar", value="incineroar"),
-#    # app_commands.Choice(name="Inkling", value="inkling"),
-#    # app_commands.Choice(name="Isabelle", value="isabelle"),
-#    # app_commands.Choice(name="Jigglypuff", value="jigglypuff"),
-#    # app_commands.Choice(name="Joker", value="joker"),
-#    # app_commands.Choice(name="Kazuya", value="kazuya"),
-#    # app_commands.Choice(name="Ken", value="ken"),
-#    # app_commands.Choice(name="King Dedede", value="king_dedede")
-#    # app_commands.Choice(name="Chrom", value="chrom"),
-#    # app_commands.Choice(name="Cloud", value="cloud"),
-#    # app_commands.Choice(name="Corrin", value="corrin"),
-#    # app_commands.Choice(name="Daisy", value="daisy"),
-#    # app_commands.Choice(name="Dark Pit", value="dark_pit"),
-#    # app_commands.Choice(name="Donkey Kong", value="donkey_kong"),
-#
-# ]
-#
+american_words = ['color', 'favorite', 'flavor', 'realize']
+
+banned_words = ['pookie', 'rex']
