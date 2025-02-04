@@ -1,7 +1,7 @@
 from datetime import *
 from os import getenv
 from random import *
-
+from unicodedata import *
 from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
@@ -119,7 +119,9 @@ def main():
     @bot.event
     async def on_message(message):
         quotes = bot.get_channel(931598462879944764)
-        print(f"#{message.channel}  {str(message.author)}: {message.content}")
+
+        print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
+        message.content = normalize("NFKD", message.content)
         if str(message.author) != 'Meteor#1277':
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
@@ -127,7 +129,7 @@ def main():
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
 #
-            elif any(i in message.content.lower() for i in american_words):
+            elif any(i in str(message.content.lower()) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv", delete_after=2)
             elif 'roy' in message.content.lower():
