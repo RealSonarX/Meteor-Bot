@@ -163,6 +163,8 @@ def main():
         except:
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
+        if DEV_ENV == 'True':
+            passed = False
         if passed:
 
             if db().search(Profile.id == interaction.user.id) != []:
