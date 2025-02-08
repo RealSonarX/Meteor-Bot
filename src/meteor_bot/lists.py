@@ -16,6 +16,27 @@ roy = (
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.")
 
-american_words = ['color', 'favorite', 'flavor', 'realize', '𝐂𝐨𝐥𝐨𝐫']
+american_words = ['color', 'favorite', 'flavor', 'realize']
 
 banned_words = ['pookie', 'rex']
+
+char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
+                   "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
+                   "diddy kong": "diddy", "terry": "dolly", "donkey kong": "donkey", "duck hunt": "duckhunt",
+                   "sephiroth": "edge", "pythra": "eflame", "falco": "falco", "fox": "fox",
+                   "mr game and watch": "gamewatch", "ganondorf": "ganon", "incineroar": "gaogaen",
+                   "greninja": "gekkouga", "ice climbers": "ice_climber", "ike": "ike", "inkling": "inkling",
+                   "joker": "jack", "corrin": "kamui", "ken": "ken", "kirby": "kirby", "bowser": "koopa",
+                   "bowser jr": "koopajr", "king k rool": "krool", "link": "link", "little mac": "littlemac",
+                   "lucario": "lucario", "lucas": "lucas", "lucina": "lucina", "luigi": "luigi", "mario": "mario",
+                   "dr mario": "mariod", "marth": "marth", "byleth": "master", "meta knight": "metaknight",
+                   "mewtwo": "mewtwo", "villager": "murabito", "ness": "ness", "piranha plant": "packun",
+                   "pac man": "pacman", "palutena": "palutena", "peach": "peach", "pichu": "pichu", "steve": "pickel",
+                   "pikachu": "pikachu", "olimar": "pikmin", "pit": "pit", "dark pit": "pitb",
+                   "pokemon trainer": "ptrainer", "jigglypuff": "purin", "random": "random", "robin": "reflet",
+                   "richter": "richter", "ridley": "ridley", "rob": "robot", "mega man": "rockman",
+                   "rosalina and luma": "rosetta", "roy": "roy", "ryu": "ryu", "samus": "samus", "dark samus": "samusd",
+                   "sheik": "sheik", "isabelle": "shizue", "shulk": "shulkk", "simon": "simon", "snake": "snake",
+                   "sonic": "sonic", "zero suit samus": "szerosuit", "toon link": "toonlink", "wario": "wario",
+                   "wii fit trainer": "wiifit", "wolf": "wolf", "yoshi": "yoshi", "young link": "younglink",
+                   "zelda": "zelda"}
