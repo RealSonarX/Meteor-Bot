@@ -92,10 +92,10 @@ def main():
             await interaction.response.send_message(f"{e}")
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
-    async def vengeance(ctx, channel: TextChannel):
+    async def vengeance(ctx, channel: TextChannel, member: Member):
         print(channel)
         for i in range(0, randint(5, 7)):
-            await channel.send("<@336961692200206336>", delete_after=randint(0, 5))
+            await channel.send(f"<@{member.id}>", delete_after=randint(0, 3))
 
     #
     # @bot.tree.command(name='update_h2h', description='Create or update a head to head')
