@@ -133,7 +133,7 @@ def main():
         embed.add_field(name=f"{member}",
                         value="eee",
                         inline=False)
-        embed.add_field(name="Main", value=f"{main}<:chara_2_bayonetta_01:>", inline=False)
+        embed.add_field(name="Main", value=f"{main}", inline=False)
         main = char_code_names[main.lower()]
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
