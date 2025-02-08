@@ -92,8 +92,10 @@ def main():
             await interaction.response.send_message(f"{e}")
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
-    async def vengeance(ctx, channel: TextChannel, member: Member):
+    async def vengeance(interaction, channel: TextChannel, member: Member):
         print(channel)
+        await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
+                                                delete_after=3)
         for i in range(0, randint(5, 7)):
             await channel.send(f"<@{member.id}>", delete_after=randint(0, 3))
 
