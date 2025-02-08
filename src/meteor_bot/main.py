@@ -141,32 +141,49 @@ def main():
         await interaction.response.send_message(embed=embed)
 
     @bot.tree.command(name='updateprofile', description='Update profile')
-    async def smasher_profile_view(interaction, main: str, alt: int):
+    @app_commands.choices(alt=[
+        app_commands.Choice(name="1", value=0),
+        app_commands.Choice(name="2", value=1),
+        app_commands.Choice(name="3", value=2),
+        app_commands.Choice(name="4", value=3),
+        app_commands.Choice(name="5", value=4),
+        app_commands.Choice(name="6", value=5),
+        app_commands.Choice(name="7", value=6),
+        app_commands.Choice(name="8", value=7)])
+    async def smasher_profile_view(interaction, main: str, alt: app_commands.Choice[int]):
         Profile = Query()
         member = str(interaction.user)
 
         main = main.title()
-        alt = alt
-        if db().search(Profile.id == interaction.user.id) != []:
-            print("haskdj")
-            db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id},
-                        Profile.id == interaction.user.id)
-        else:
-            db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id})
-        profile_data = db().search(Profile.id == interaction.user.id)
-        user_avatar = interaction.user.avatar.url
-        embed = Embed(colour=0x00b0f4)
-        main = profile_data[0]['main']
-        alt = profile_data[0]['alt']
-        embed.add_field(name=f"{member}",
-                        value="eee",
-                        inline=False)
-        embed.add_field(name="Main", value=main, inline=False)
-        main = char_code_names[main.lower()]
-        embed.set_image(
-            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
-        embed.set_thumbnail(url=user_avatar)
-        await interaction.response.send_message("Updated your profile!")
+        alt = int(alt.value)
+        passed = True
+        try:
+            main = char_code_names[main.lower()]
+
+        except:
+            await interaction.response.send_message("You didn't enter a valid character!")
+            passed = False
+        if passed:
+
+            if db().search(Profile.id == interaction.user.id) != []:
+                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id},
+                            Profile.id == interaction.user.id)
+            else:
+                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id})
+            profile_data = db().search(Profile.id == interaction.user.id)
+            user_avatar = interaction.user.avatar.url
+            embed = Embed(colour=0x00b0f4)
+            main = profile_data[0]['main']
+            alt = profile_data[0]['alt']
+            embed.add_field(name=f"{member}",
+                            value="eee",
+                            inline=False)
+            embed.add_field(name="Main", value=main, inline=False)
+            main = char_code_names[main.lower()]
+            embed.set_image(
+                url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
+            embed.set_thumbnail(url=user_avatar)
+            await interaction.response.send_message("Updated your profile!", embed=embed)
 
     async def timeout_user(member: Member):
         await member.timeout(timedelta(seconds=7), reason=f"Joe")

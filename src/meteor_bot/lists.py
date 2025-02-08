@@ -1,3 +1,4 @@
+
 meta_knight = (" Meta Knight is everything, he's all you ever wanted \n You could win a set now, even if you've never "
                "won it \n Clashes he always wins, trade they ain't never gonna \n You want him forever any counter "
                "pick he's better on it \n Aerial is down, press it while I'm jumpin' up \n Then hit the B button like "
