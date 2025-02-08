@@ -6,8 +6,10 @@ packages = [
   {include = "meteor_bot", from = "src"},
 ]
 dependencies = [
+    "aioconsole>=0.8.1",
     "discord-py>=2.4.0",
     "python-dotenv>=1.0.1",
+    "tinydb>=4.8.2",
 ]
 
 [build-system]
