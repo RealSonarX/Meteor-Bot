@@ -135,7 +135,7 @@ def main():
         embed.add_field(name=f"{member}",
                         value="eee",
                         inline=False)
-        embed.add_field(name="Main", value=f"{main}", inline=False)
+        embed.add_field(name="Main", value=f"{main} ", inline=False)
         main = char_code_names[main.lower()]
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
@@ -262,6 +262,7 @@ def main():
     @bot.event
     async def on_ready():
         await bot.tree.sync()
+        guild = bot.get_guild(906804682452779058)
         print(f'We have logged in as {bot.user}')
 
         if DEV_ENV == 'True':
@@ -269,6 +270,9 @@ def main():
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
             print("Done!")
         send_messagee.start()
+        # await (bot.fetch_application_emojis)
+        channel = bot.get_channel(956606255974199327)
+       # await channel.send(f"{emoji}")
 
 
 
