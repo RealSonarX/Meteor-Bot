@@ -136,7 +136,7 @@ def main():
                         value="eee",
                         inline=False)
         embed.add_field(name="Main", value=f"{main} ", inline=False)
-        main = char_code_names[main.lower()]
+        main = main.lower()
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
         embed.set_thumbnail(url=user_avatar)
@@ -165,8 +165,8 @@ def main():
         except:
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
-        if DEV_ENV == 'True':
-            passed = False
+        #if DEV_ENV == 'True':
+        #    passed = False
         if passed:
 
             if db().search(Profile.id == interaction.user.id) != []:
