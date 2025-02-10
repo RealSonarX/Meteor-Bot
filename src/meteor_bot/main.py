@@ -45,11 +45,17 @@ def main():
 
     @tasks.loop(seconds=3)
     async def send_messagee():
+        global channel
         if DEV_ENV == 'True':
 
             try:
                 channel = bot.get_channel(956606255974199327)
                 msg = await ainput("Input your message: ")
+                if msg[0] == '#':
+                    msg = msg[1:-1]
+                    for i in bot.get_all_channels():
+                        if i.name == ''.join(msg):
+                            channel = bot.get_channel(i.id)
                 await channel.send(f"{msg}")
             except Exception:
                 pass
@@ -70,7 +76,9 @@ def main():
         try:
             #
             channel = interaction.channel
-            if member not in get_hitlist():
+            if member == 'view':
+                await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
+            elif member not in get_hitlist():
                 hitlist = get_hitlist()
                 hitlist.append(str(member))
                 temp_hitlist = hitlist
@@ -86,8 +94,7 @@ def main():
                 with open("hitlist.txt", "w") as f:
                     for i in get_hitlist():
                         f.write(f"{i}\n")
-            elif member == 'view':
-                await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
+
         except Exception as e:
             await interaction.response.send_message(f"{e}")
 
