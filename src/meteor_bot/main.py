@@ -156,7 +156,7 @@ def main():
         Profile = Query()
         member = str(interaction.user)
 
-        main = main.title()
+        main = main.lower()
         alt = int(alt.value)
         passed = True
         try:
@@ -183,7 +183,7 @@ def main():
                             value="eee",
                             inline=False)
             embed.add_field(name="Main", value=main, inline=False)
-            main = char_code_names[main.lower()]
+            main = main.lower()
             embed.set_image(
                 url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
             embed.set_thumbnail(url=user_avatar)
@@ -271,7 +271,7 @@ def main():
             print("Done!")
         send_messagee.start()
         # await (bot.fetch_application_emojis)
-        channel = bot.get_channel(956606255974199327)
+
        # await channel.send(f"{emoji}")
 
 
