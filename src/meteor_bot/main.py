@@ -131,14 +131,14 @@ def main():
         user_avatar = member.avatar.url
         embed = Embed(colour=0x00b0f4)
         main = profile_data[0]['main']
+        maincodename = char_code_names[main.lower()]
         alt = profile_data[0]['alt']
         embed.add_field(name=f"{member}",
                         value="eee",
                         inline=False)
         embed.add_field(name="Main", value=f"{main} ", inline=False)
-        main = main.lower()
         embed.set_image(
-            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
+            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
         embed.set_thumbnail(url=user_avatar)
         await interaction.response.send_message(embed=embed)
 
@@ -160,9 +160,10 @@ def main():
         alt = int(alt.value)
         passed = True
         try:
-            main = char_code_names[main.lower()]
+            main_codename = char_code_names[main.lower()]
 
         except:
+            main_codename = 0
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
         #if DEV_ENV == 'True':
@@ -183,9 +184,8 @@ def main():
                             value="eee",
                             inline=False)
             embed.add_field(name="Main", value=main, inline=False)
-            main = main.lower()
             embed.set_image(
-                url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main.lower()}_0{alt}.png")
+                url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main_codename.lower()}_0{alt}.png")
             embed.set_thumbnail(url=user_avatar)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
