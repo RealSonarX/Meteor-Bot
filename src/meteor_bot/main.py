@@ -149,7 +149,7 @@ def main():
         maincodename = char_code_names[main.lower()]
         alt = profile_data[0]['alt']
         embed.add_field(name=f"{member}",
-                        value="eee",
+                        value="",
                         inline=False)
         embed.add_field(name="Main", value=f"{main} ", inline=False)
         embed.set_image(
