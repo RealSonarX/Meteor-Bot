@@ -72,7 +72,13 @@ def main():
             await interaction.response.send_message(
                 f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
 
-    #
+    @bot.tree.command(name='announce', description='Ping everyone individually')
+    async def ping_everyone(interaction):
+        msg = ''
+        for i in bot.get_all_members():
+            msg += f"<@{i.id}> "
+        await interaction.response.send_message(msg, delete_after=2)
+
     @bot.tree.command(name='hitlist', description='Add them to the hitlist')
     async def hitlist_config(interaction, member: str):
         try:
@@ -243,7 +249,7 @@ def main():
     #       print(chosen_username)
     #       await member.edit(nick=chosen_username)
 
-    #
+
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
@@ -277,6 +283,7 @@ def main():
         if DEV_ENV == 'True':
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
+
             print("Done!")
         send_messagee.start()
         # await (bot.fetch_application_emojis)
