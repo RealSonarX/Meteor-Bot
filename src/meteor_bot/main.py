@@ -53,7 +53,20 @@ def main():
                 msg = await ainput("Input your message: ")
                 actual_msg = msg
                 if msg[0] == '#':
-                    actual_msg = msg[1:-1]
+                    construction_msg = []
+                    for i in msg[1:-1]:
+                        construction_msg.append(i)
+                    print(construction_msg)
+                    channel_find = True
+                    channel_name = ''
+                    for i in construction_msg:
+                        if i == ' ':
+                            channel_find = False
+                        else:
+                            channel_name += i
+                        if not channel_find:
+                            break
+                    print(channel_name)
                     for i in bot.get_all_channels():
                         if i.name == ''.join(msg):
                             channel = bot.get_channel(i.id)
@@ -192,9 +205,11 @@ def main():
                 db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id})
             profile_data = db().search(Profile.id == interaction.user.id)
             user_avatar = interaction.user.avatar.url
+            colour = profile_data[0]['colour']
             embed = Embed(colour=0x00b0f4)
             main = profile_data[0]['main']
             alt = profile_data[0]['alt']
+
             embed.add_field(name=f"{member}",
                             value="eee",
                             inline=False)
