@@ -51,12 +51,14 @@ def main():
             try:
                 channel = bot.get_channel(956606255974199327)
                 msg = await ainput("Input your message: ")
+                actual_msg = msg
                 if msg[0] == '#':
-                    msg = msg[1:-1]
+                    actual_msg = msg[1:-1]
                     for i in bot.get_all_channels():
                         if i.name == ''.join(msg):
                             channel = bot.get_channel(i.id)
-                await channel.send(f"{msg}")
+
+                await channel.send(f"{actual_msg}")
             except Exception:
                 pass
 
@@ -104,7 +106,7 @@ def main():
         await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
                                                 delete_after=3)
         for i in range(0, randint(5, 7)):
-            await channel.send(f"<@{member.id}>", delete_after=randint(0, 3))
+            await channel.send(f"<@{member.id}>", delete_after=1)
 
     #
     # @bot.tree.command(name='update_h2h', description='Create or update a head to head')
