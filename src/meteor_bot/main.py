@@ -45,33 +45,46 @@ def main():
 
     @tasks.loop(seconds=3)
     async def send_messagee():
-        global channel
-        if DEV_ENV == 'True':
+        global channel, index_of_msg
 
-            try:
+        if DEV_ENV == 'True':
+            if channel != bot.get_channel(956606255974199327):
+                channel = channel
+            else:
                 channel = bot.get_channel(956606255974199327)
+            try:
+
                 msg = await ainput("Input your message: ")
                 actual_msg = msg
                 if msg[0] == '#':
                     construction_msg = []
-                    for i in msg[1:-1]:
+                    for i in msg[1: (len(msg))]:
                         construction_msg.append(i)
-                    print(construction_msg)
                     channel_find = True
                     channel_name = ''
+                    index_counter = 0
                     for i in construction_msg:
                         if i == ' ':
                             channel_find = False
                         else:
                             channel_name += i
+                            index_counter += 1
+
                         if not channel_find:
                             break
-                    print(channel_name)
+                    actual_msg = ''
+                    construction_counter = 0
+                    for i in construction_msg:
+                        if construction_counter >= index_counter:
+                            actual_msg += i
+                        construction_counter += 1
                     for i in bot.get_all_channels():
-                        if i.name == ''.join(msg):
+                        if i.name == channel_name:
                             channel = bot.get_channel(i.id)
 
+
                 await channel.send(f"{actual_msg}")
+
             except Exception:
                 pass
 
@@ -248,8 +261,7 @@ def main():
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
-            elif '<@&1328843759764639895>' in message.content:
-                await message.channel.send('https://tenor.com/view/cat-but-heres-the-yapping-gif-5342913541658644726')
+
             elif str(message.author) == 'randomness8736' and str(message.author) in get_hitlist():
                 await message.channel.send("I didn't ask", delete_after=5)
                 await timeout_user(message.author)
@@ -268,11 +280,9 @@ def main():
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        # print(channel)
         if str(after) == '':
             pass
 
-    #
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
