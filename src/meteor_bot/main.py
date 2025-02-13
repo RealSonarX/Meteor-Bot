@@ -216,6 +216,9 @@ def main():
             main_codename = 0
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
+        if any(i in ''.join(str(desc.lower())) for i in american_words):
+            passed = False
+            await interaction.response.send_message("You thought.")
         #if DEV_ENV == 'True':
         #    passed = False
         if passed:

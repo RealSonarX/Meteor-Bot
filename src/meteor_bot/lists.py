@@ -17,7 +17,7 @@ roy = (
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.")
 
-american_words = ['color', 'favorite', 'flavor', 'realize']
+american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor']
 
 banned_words = ['pookie', 'rex']
 
