@@ -19,7 +19,7 @@ roy = (
 
 american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor']
 
-weird_words = ['pookie', 'rex']
+banned_words = ['pookie', 'rex']
 
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
                    "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
@@ -42,4 +42,4 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
                    "wii fit trainer": "wiifit", "wolf": "wolf", "yoshi": "yoshi", "young link": "younglink",
                    "zelda": "zelda"}
 
-banned_words = [american_words, weird_words]
+# banned_words_list = [american_words, weird_words]
