@@ -33,6 +33,31 @@ def main():
     def db():
         db = TinyDB('db.json')
         return db
+    def profile_view(member):
+        Profile = Query()
+        profile_data = db().search(Profile.id == member.id)
+        user_avatar = member.avatar.url
+        try:
+            colour = profile_data[0]['colour']
+        except:
+            colour = 0x00b0f4
+        embed = Embed(colour=colour)
+        main = profile_data[0]['main']
+        maincodename = char_code_names[main.lower()]
+        alt = profile_data[0]['alt']
+        try:
+            desc = profile_data[0]['desc']
+        except:
+            desc = 'Awaiting description!'
+
+        embed.add_field(name=f"{member}",
+                        value=desc,
+                        inline=False)
+        embed.add_field(name="Main", value=f"{main} ", inline=False)
+        embed.set_image(
+            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
+        embed.set_thumbnail(url=user_avatar)
+        return embed
 
     bot = commands.Bot(command_prefix='.', intents=intents)
 
@@ -140,11 +165,7 @@ def main():
         for i in range(0, randint(5, 7)):
             await channel.send(f"<@{member.id}>", delete_after=1)
 
-    #
-    # @bot.tree.command(name='update_h2h', description='Create or update a head to head')
-    # async def create_h2h(interaction, user1, user2):
-    #    pass
-    #
+
     @bot.tree.command(name='newjoins', description='Find new joins')
     async def newjoins(interaction, elim_date: str):
         guild = bot.get_guild(906804682452779058)
@@ -167,20 +188,7 @@ def main():
 
     @bot.tree.command(name='viewprofile', description='View profiles of server members')
     async def smasher_profile_view(interaction, member: Member):
-        Profile = Query()
-        profile_data = db().search(Profile.id == member.id)
-        user_avatar = member.avatar.url
-        embed = Embed(colour=0x00b0f4)
-        main = profile_data[0]['main']
-        maincodename = char_code_names[main.lower()]
-        alt = profile_data[0]['alt']
-        embed.add_field(name=f"{member}",
-                        value="",
-                        inline=False)
-        embed.add_field(name="Main", value=f"{main} ", inline=False)
-        embed.set_image(
-            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
-        embed.set_thumbnail(url=user_avatar)
+        embed = profile_view(member)
         await interaction.response.send_message(embed=embed)
 
     @bot.tree.command(name='updateprofile', description='Update profile')
@@ -193,7 +201,7 @@ def main():
         app_commands.Choice(name="6", value=5),
         app_commands.Choice(name="7", value=6),
         app_commands.Choice(name="8", value=7)])
-    async def smasher_profile_view(interaction, main: str, alt: app_commands.Choice[int]):
+    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int]):
         Profile = Query()
         member = str(interaction.user)
 
@@ -216,20 +224,7 @@ def main():
                             Profile.id == interaction.user.id)
             else:
                 db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id})
-            profile_data = db().search(Profile.id == interaction.user.id)
-            user_avatar = interaction.user.avatar.url
-            colour = profile_data[0]['colour']
-            embed = Embed(colour=0x00b0f4)
-            main = profile_data[0]['main']
-            alt = profile_data[0]['alt']
-
-            embed.add_field(name=f"{member}",
-                            value="eee",
-                            inline=False)
-            embed.add_field(name="Main", value=main, inline=False)
-            embed.set_image(
-                url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{main_codename.lower()}_0{alt}.png")
-            embed.set_thumbnail(url=user_avatar)
+            embed = profile_view(interaction.user)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
     async def timeout_user(member: Member):
