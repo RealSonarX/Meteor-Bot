@@ -37,6 +37,7 @@ def main():
         Profile = Query()
         profile_data = db().search(Profile.id == member.id)
         user_avatar = member.avatar.url
+
         try:
             colour = profile_data[0]['colour']
         except:
@@ -201,7 +202,7 @@ def main():
         app_commands.Choice(name="6", value=5),
         app_commands.Choice(name="7", value=6),
         app_commands.Choice(name="8", value=7)])
-    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int]):
+    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], desc: str="Awaiting description!"):
         Profile = Query()
         member = str(interaction.user)
 
@@ -220,10 +221,10 @@ def main():
         if passed:
 
             if db().search(Profile.id == interaction.user.id) != []:
-                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id},
+                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc},
                             Profile.id == interaction.user.id)
             else:
-                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id})
+                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc})
             embed = profile_view(interaction.user)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
