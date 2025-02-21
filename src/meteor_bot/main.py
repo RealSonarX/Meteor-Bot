@@ -50,11 +50,17 @@ def main():
             desc = profile_data[0]['desc']
         except:
             desc = 'Awaiting description!'
-
+        try:
+            secondary = profile_data[0]['secondary']
+        except:
+            secondary = ''
         embed.add_field(name=f"{member}",
                         value=desc,
                         inline=False)
         embed.add_field(name="Main", value=f"{main} ", inline=False)
+        if secondary != '':
+
+            embed.add_field(name="Secondary", value=f"{secondary} ", inline=False)
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
         embed.set_thumbnail(url=user_avatar)
@@ -120,7 +126,6 @@ def main():
             await interaction.response.send_message(
                 f"https://ultimateframedata.com/hitboxes/pt_{character.title()}/{character.title()}{move.title()}.gif \n")
         else:
-            #
             await interaction.response.send_message(
                 f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
 
@@ -192,6 +197,16 @@ def main():
         embed = profile_view(member)
         await interaction.response.send_message(embed=embed)
 
+    @bot.tree.command(name='record', description='Record results! ')
+    async def record_results(interaction, member: Member, event_name: str, placement: int):
+        Profile = Query()
+        embed = profile_view(member)
+        profile_data = db().search(Profile.id == member.id)
+        #db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
+         #            'secondary': secondary},
+                    #Profile.id == interaction.user.id)
+        await interaction.response.send_message(embed=embed)
+
     @bot.tree.command(name='updateprofile', description='Update profile')
     @app_commands.choices(alt=[
         app_commands.Choice(name="1", value=0),
@@ -202,7 +217,7 @@ def main():
         app_commands.Choice(name="6", value=5),
         app_commands.Choice(name="7", value=6),
         app_commands.Choice(name="8", value=7)])
-    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], desc: str="Awaiting description!"):
+    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], secondary: str='', desc: str="Awaiting description!"):
         Profile = Query()
         member = str(interaction.user)
 
@@ -211,23 +226,24 @@ def main():
         passed = True
         try:
             main_codename = char_code_names[main.lower()]
-
+            sec_codename = char_code_names[secondary.lower()]
         except:
             main_codename = 0
+            sec_codename = 0
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
         if any(i in normalize('NFKD',''.join(str(desc.lower()))) for i in american_words):
             passed = False
             await interaction.response.send_message("You thought.")
-        #if DEV_ENV == 'True':
-        #    passed = False
+        if DEV_ENV == 'True':
+            passed = False
         if passed:
 
             if db().search(Profile.id == interaction.user.id) != []:
-                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc},
+                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc, 'secondary': secondary},
                             Profile.id == interaction.user.id)
             else:
-                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc})
+                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc, 'secondary': secondary})
             embed = profile_view(interaction.user)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
