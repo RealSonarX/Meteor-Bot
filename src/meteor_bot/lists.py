@@ -17,7 +17,7 @@ roy = (
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.")
 
-american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor']
+american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
 
 banned_words = ['pookie', 'rex']
 
@@ -43,3 +43,5 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
                    "zelda": "zelda"}
 
 # banned_words_list = [american_words, weird_words]
+
+nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try again!"]

@@ -33,6 +33,7 @@ def main():
     def db():
         db = TinyDB('db.json')
         return db
+
     def profile_view(member):
         Profile = Query()
         profile_data = db().search(Profile.id == member.id)
@@ -59,7 +60,6 @@ def main():
                         inline=False)
         embed.add_field(name="Main", value=f"{main} ", inline=False)
         if secondary != '':
-
             embed.add_field(name="Secondary", value=f"{secondary} ", inline=False)
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
@@ -114,7 +114,6 @@ def main():
                         if i.name == channel_name:
                             channel = bot.get_channel(i.id)
 
-
                 await channel.send(f"{actual_msg}")
 
             except Exception:
@@ -166,11 +165,14 @@ def main():
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
         print(channel)
-        await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
-                                                delete_after=3)
-        for i in range(0, randint(5, 7)):
-            await channel.send(f"<@{member.id}>", delete_after=1)
+        if str(member.name) != 'realsonar':
 
+            await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
+                                                    delete_after=3)
+            for i in range(0, randint(5, 7)):
+                await channel.send(f"<@{member.id}>", delete_after=1)
+        else:
+            await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
     @bot.tree.command(name='newjoins', description='Find new joins')
     async def newjoins(interaction, elim_date: str):
@@ -202,9 +204,9 @@ def main():
         Profile = Query()
         embed = profile_view(member)
         profile_data = db().search(Profile.id == member.id)
-        #db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
-         #            'secondary': secondary},
-                    #Profile.id == interaction.user.id)
+        # db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
+        #            'secondary': secondary},
+        # Profile.id == interaction.user.id)
         await interaction.response.send_message(embed=embed)
 
     @bot.tree.command(name='updateprofile', description='Update profile')
@@ -217,7 +219,8 @@ def main():
         app_commands.Choice(name="6", value=5),
         app_commands.Choice(name="7", value=6),
         app_commands.Choice(name="8", value=7)])
-    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], secondary: str='', desc: str="Awaiting description!"):
+    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], secondary: str = '',
+                                     desc: str = "Awaiting description!"):
         Profile = Query()
         member = str(interaction.user)
 
@@ -232,7 +235,7 @@ def main():
             sec_codename = 0
             await interaction.response.send_message("You didn't enter a valid character!")
             passed = False
-        if any(i in normalize('NFKD',''.join(str(desc.lower()))) for i in american_words):
+        if any(i in normalize('NFKD', ''.join(str(desc.lower()))) for i in american_words):
             passed = False
             await interaction.response.send_message("You thought.")
         if DEV_ENV == 'True':
@@ -240,15 +243,18 @@ def main():
         if passed:
 
             if db().search(Profile.id == interaction.user.id) != []:
-                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc, 'secondary': secondary},
+                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
+                             'secondary': secondary},
                             Profile.id == interaction.user.id)
             else:
-                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc, 'secondary': secondary})
+                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
+                             'secondary': secondary})
             embed = profile_view(interaction.user)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
     async def timeout_user(member: Member):
-        await member.timeout(timedelta(seconds=7), reason=f"Joe")
+        await member.timeout(timedelta(seconds=99999), reason=f"Joe")
+        print(f"Timouted {member.name}")
 
     #
     @bot.event
@@ -283,14 +289,14 @@ def main():
             elif 'aegis' in message.content.lower() and str(message.author) in get_hitlist():
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Did you mean Pithra?", delete_after=5)
-
+            elif '@everyone' in message.content.lower():
+                await message.channel.send(f"{nope_list[randint(0, (len(nope_list)-1))]}", reference=message)
     #
     # async def reset_username(member: Member):
     #   if str(member) == '1mpy':
     #       chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
     #       print(chosen_username)
     #       await member.edit(nick=chosen_username)
-
 
     @bot.event
     async def on_member_update(before, after):
@@ -323,14 +329,14 @@ def main():
         if DEV_ENV == 'True':
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) id is {i.id}")
-
             print("Done!")
+
+
+
         send_messagee.start()
         # await (bot.fetch_application_emojis)
 
-       # await channel.send(f"{emoji}")
-
-
+    # await channel.send(f"{emoji}")
 
     # async
     get_hitlist()
