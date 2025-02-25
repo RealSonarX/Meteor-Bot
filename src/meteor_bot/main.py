@@ -58,9 +58,9 @@ def main():
         embed.add_field(name=f"{member}",
                         value=desc,
                         inline=False)
-        embed.add_field(name="Main", value=f"{main} ", inline=False)
+        embed.add_field(name="Main", value=f"{main.title()} ", inline=False)
         if secondary != '':
-            embed.add_field(name="Secondary", value=f"{secondary} ", inline=False)
+            embed.add_field(name="Secondary", value=f"{(profile_data[0]['secondary']).title()} ", inline=False)
         embed.set_image(
             url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
         embed.set_thumbnail(url=user_avatar)
@@ -119,15 +119,6 @@ def main():
             except Exception:
                 pass
 
-    @bot.tree.command(name='ufd', description="Quickly see a move's stats and hitbox")
-    async def ufd(interaction, character: str, move: str):
-        if character.lower() in pt:
-            await interaction.response.send_message(
-                f"https://ultimateframedata.com/hitboxes/pt_{character.title()}/{character.title()}{move.title()}.gif \n")
-        else:
-            await interaction.response.send_message(
-                f"https://ultimateframedata.com/hitboxes/{character.title()}/{character.title()}{move.title()}.gif \n")
-
     @bot.tree.command(name='announce', description='Ping everyone individually')
     async def ping_everyone(interaction):
         msg = ''
@@ -147,40 +138,20 @@ def main():
         else:
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
-    @bot.tree.command(name='newjoins', description='Find new joins')
-    async def newjoins(interaction, elim_date: str):
-        guild = bot.get_guild(906804682452779058)
-        channel = interaction.channel.name
-        for e in guild.channels:
-            if str(e.name) == str(channel):
-                print("Channel")
-                channel = e
-        new_joins = []
-        i = (datetime.strptime(elim_date, "%d/%m/%Y").date())
-        print(i)
-        for member in guild.members:
-            e = (member.joined_at.date())
-            if e >= i:
-                print(member.name)
-                new_joins.append(f"{member.name}")
-        await interaction.response.send_message(f"Getting list of new users after {elim_date}! Check Python Terminal")
-        complete_message = '\n'.join(new_joins)
-        await channel.send(f"```{complete_message}```")
-
     @bot.tree.command(name='viewprofile', description='View profiles of server members')
     async def smasher_profile_view(interaction, member: Member):
         embed = profile_view(member)
         await interaction.response.send_message(embed=embed)
 
-    @bot.tree.command(name='record', description='Record results! ')
-    async def record_results(interaction, member: Member, event_name: str, placement: int):
-        Profile = Query()
-        embed = profile_view(member)
-        profile_data = db().search(Profile.id == member.id)
-        # db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
-        #            'secondary': secondary},
-        # Profile.id == interaction.user.id)
-        await interaction.response.send_message(embed=embed)
+    #@bot.tree.command(name='record', description='Record results! ')
+    #async def record_results(interaction, member: Member, event_name: str, placement: int):
+    #    Profile = Query()
+    #    embed = profile_view(member)
+    #    profile_data = db().search(Profile.id == member.id)
+    #    # db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
+    #    #            'secondary': secondary},
+    #    # Profile.id == interaction.user.id)
+    #    await interaction.response.send_message(embed=embed)
 
     @bot.tree.command(name='updateprofile', description='Update profile')
     @app_commands.choices(alt=[
