@@ -45,6 +45,7 @@ def main():
             colour = 0x00b0f4
         embed = Embed(colour=colour)
         main = profile_data[0]['main']
+
         maincodename = char_code_names[main.lower()]
         alt = profile_data[0]['alt']
         try:
