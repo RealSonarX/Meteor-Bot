@@ -135,33 +135,6 @@ def main():
             msg += f"<@{i.id}> "
         await interaction.response.send_message(msg, delete_after=2)
 
-    @bot.tree.command(name='hitlist', description='Add them to the hitlist')
-    async def hitlist_config(interaction, member: str):
-        try:
-            #
-            channel = interaction.channel
-            if member == 'view':
-                await interaction.response.send_message(f"{get_hitlist()}", ephemeral=True, delete_after=3)
-            elif member not in get_hitlist():
-                hitlist = get_hitlist()
-                hitlist.append(str(member))
-                temp_hitlist = hitlist
-                await interaction.response.send_message(f"{member} added to the HITLIST...", ephemeral=True,
-                                                        delete_after=3)
-                await channel.send(f"Target added to the HITLIST...")
-                with open("hitlist.txt", "w") as f:
-                    for i in temp_hitlist:
-                        f.write(f"{i}\n")
-            elif member in get_hitlist():
-                get_hitlist().remove(member)
-                await interaction.response.send_message(f"Target removed from the HITLIST")
-                with open("hitlist.txt", "w") as f:
-                    for i in get_hitlist():
-                        f.write(f"{i}\n")
-
-        except Exception as e:
-            await interaction.response.send_message(f"{e}")
-
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
         print(channel)
@@ -274,24 +247,17 @@ def main():
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
                                            delete_after=2)
-
-                # await timeout_user(message.author)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
                 pass
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
-
-            elif str(message.author) == 'randomness8736' and str(message.author) in get_hitlist():
-                await message.channel.send("I didn't ask", delete_after=5)
-                await timeout_user(message.author)
-            elif 'aegis' in message.content.lower() and str(message.author) in get_hitlist():
-                await message.delete()
-                await message.channel.send(f"<@{message.author.id}> Did you mean Pithra?", delete_after=5)
             elif '@everyone' in message.content.lower():
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list)-1))]}", reference=message)
-    #
+            elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (str(message.author) == 'khaoslatet') :
+                await message.delete()
+
     # async def reset_username(member: Member):
     #   if str(member) == '1mpy':
     #       chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
