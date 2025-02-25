@@ -173,7 +173,8 @@ def main():
         passed = True
         try:
             main_codename = char_code_names[main.lower()]
-            sec_codename = char_code_names[secondary.lower()]
+            if secondary != '':
+                sec_codename = char_code_names[secondary.lower()]
         except:
             main_codename = 0
             sec_codename = 0
