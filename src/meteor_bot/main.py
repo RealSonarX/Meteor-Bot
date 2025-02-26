@@ -217,7 +217,6 @@ def main():
                         i.update({'spam_count' : (i['spam_count']+1)})
                         await sleep(60)
                         i.update({'spam_count': 0})
-                    print(watchlist)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
