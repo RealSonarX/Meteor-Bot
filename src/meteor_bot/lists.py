@@ -1,10 +1,14 @@
-
-meta_knight = (" Meta Knight is everything, he's all you ever wanted \n You could win a set now, even if you've never "
-               "won it \n Clashes he always wins, trade they ain't never gonna \n You want him forever any counter "
-               "pick he's better on it \n Aerial is down, press it while I'm jumpin' up \n Then hit the B button like "
-               "i don't give a fuck \n I know you wait for it, but you're out of luck \n I can do the same thing "
-               "every single time \n I say Meta Knight da bess, Meta Knight da bess \n Meta Knight da bess, "
-               "Meta Knight da bess \n Now Donkey Kong is mad, Dedede is mad \n Mario is mad, Ice Climbers are mad ")
+meta_knight = ("Meta Knight is everything, he's all you ever wanted "
+               "You could win a set now, even if you've never won it  "
+               "Clashes he always wins, trade they ain't never gonna "
+               "You want him forever any counterpick he's better on it "
+               "Aerial is down, press it while I'm jumpin' up "
+               "Then hit the B button like I don't give a fuck "
+               "I know you wait for it, but you're out of luck "
+               "I can do the same thing every single time "
+               "I say Meta Knight da bess, Meta Knight da bess "
+               "Meta Knight da bess, Meta Knight da bess "
+               "Now Donkey Kong is mad, Dedede is mad  Mario is mad, Ice Climbers are mad ")
 
 roy = (
     "Why the FUCK does Roy’s jab come out faster than Brawl Meta Knight up air like holy SHIT I wanna "
@@ -44,4 +48,12 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
 
 # banned_words_list = [american_words, weird_words]
 
-nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try again!"]
+nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try "
+                                                                                                                "again!"]
+roy_happy = ["Everybody should main Roy he's so cool and awesome", "Roy :star_struck:"]
+rules = [
+    "No bigotry. There's unfortunately too much of that in the real world that is still very real. This is a community server, and as such, misogyny, racism etc. will not be tolerated.",
+    "Keep it clean. No NSFW whatsoever. No I don't care if it's the funniest thing ever to you, just don't. This is not a place for that and it's frankly often very unpleasant. ",
+    "No slurs. This should be obvious, but absolutely no slurs. Not as a joke, not as an insult, none of it."
+
+]
