@@ -212,7 +212,7 @@ def main():
                 #await message.channel.send(meta_knight)
                 for i in watchlist:
                     if i['username'] == str(message.author):
-                        if i['spam_count'] == 1:
+                        if i['spam_count'] == 2:
                             await timeout_user(message.author)
                         i.update({'spam_count' : (i['spam_count']+1)})
                         await sleep(60)
