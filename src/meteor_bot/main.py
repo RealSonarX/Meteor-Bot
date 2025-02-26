@@ -1,4 +1,3 @@
-from datetime import *
 from os import getenv
 from random import *
 from unicodedata import *
@@ -21,6 +20,7 @@ else:
 def main():
     intents = Intents.all()
     watchlist = []
+
     def get_hitlist():
         try:
             f = open("hitlist.txt", "x")
@@ -197,7 +197,6 @@ def main():
         await member.timeout(timedelta(minutes=20), reason=f"Spam")
         print(f"Timouted {member.name}")
 
-
     @bot.event
     async def on_message(message):
         quotes = bot.get_channel(931598462879944764)
@@ -209,12 +208,14 @@ def main():
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
-                #await message.channel.send(meta_knight)
+                # await message.channel.send(meta_knight)
                 for i in watchlist:
                     if i['username'] == str(message.author):
                         if i['spam_count'] == 2:
                             await timeout_user(message.author)
-                        i.update({'spam_count' : (i['spam_count']+1)})
+                            await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
+                                                       reference=message)
+                        i.update({'spam_count': (i['spam_count'] + 1)})
                         await sleep(60)
                         i.update({'spam_count': 0})
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
@@ -227,12 +228,12 @@ def main():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
                 elif randint(0, 10) == 2:
-                    await message.channel.send(roy_happy[randint(0, len(roy_happy)-1)])
+                    await message.channel.send(roy_happy[randint(0, len(roy_happy) - 1)])
             elif '@everyone' in message.content.lower():
-                await message.channel.send(f"{nope_list[randint(0, (len(nope_list)-1))]}", reference=message)
-            elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (str(message.author) == 'khaoslatet') :
+                await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
+            elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (
+                    str(message.author) == 'khaoslatet'):
                 await message.delete()
-
 
     @bot.event
     async def on_member_update(before, after):
