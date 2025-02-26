@@ -6,6 +6,8 @@ from tinydb import *
 from discord import *
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
+from datetime import *
+from asyncio import *
 
 load_dotenv("token.env")
 DEV_ENV = (getenv('DEV_ENV'))
@@ -18,7 +20,7 @@ else:
 
 def main():
     intents = Intents.all()
-
+    watchlist = []
     def get_hitlist():
         try:
             f = open("hitlist.txt", "x")
@@ -127,14 +129,17 @@ def main():
             msg += f"<@{i.id}> "
         await interaction.response.send_message(msg, delete_after=2)
 
+    @bot.tree.command(name='rules', description='Shows the server rules')
+    async def view_rules(interaction):
+        pass
+
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
-        print(channel)
         if str(member.name) != 'realsonar':
 
             await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
                                                     delete_after=3)
-            for i in range(0, randint(5, 7)):
+            for i in range(0, randint(10, 15)):
                 await channel.send(f"<@{member.id}>", delete_after=1)
         else:
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
@@ -143,16 +148,6 @@ def main():
     async def smasher_profile_view(interaction, member: Member):
         embed = profile_view(member)
         await interaction.response.send_message(embed=embed)
-
-    #@bot.tree.command(name='record', description='Record results! ')
-    #async def record_results(interaction, member: Member, event_name: str, placement: int):
-    #    Profile = Query()
-    #    embed = profile_view(member)
-    #    profile_data = db().search(Profile.id == member.id)
-    #    # db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
-    #    #            'secondary': secondary},
-    #    # Profile.id == interaction.user.id)
-    #    await interaction.response.send_message(embed=embed)
 
     @bot.tree.command(name='updateprofile', description='Update profile')
     @app_commands.choices(alt=[
@@ -199,43 +194,46 @@ def main():
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
     async def timeout_user(member: Member):
-        await member.timeout(timedelta(seconds=99999), reason=f"Joe")
+        await member.timeout(timedelta(minutes=20), reason=f"Spam")
         print(f"Timouted {member.name}")
 
-    #
+
     @bot.event
     async def on_message(message):
         quotes = bot.get_channel(931598462879944764)
 
         print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
         message.content = normalize("NFKD", message.content)
-        if str(message.author) != 'Meteor#1277':
+        if str(message.author) != 'Meteor#1277' and DEV_ENV == 'True':
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
-            if 'meta knight' in message.content.lower() and DEV_ENV != "True":
-                await message.channel.send(meta_knight)
-            #
+            if 'meta knight' in message.content.lower():
+                #await message.channel.send(meta_knight)
+                for i in watchlist:
+                    if i['username'] == str(message.author):
+                        if i['spam_count'] == 1:
+                            await timeout_user(message.author)
+                        i.update({'spam_count' : (i['spam_count']+1)})
+                        await sleep(60)
+                        i.update({'spam_count': 0})
+                    print(watchlist)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
                                            delete_after=2)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
-                pass
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
+                elif randint(0, 10) == 2:
+                    await message.channel.send(roy_happy[randint(0, len(roy_happy)-1)])
             elif '@everyone' in message.content.lower():
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list)-1))]}", reference=message)
             elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (str(message.author) == 'khaoslatet') :
                 await message.delete()
 
-    # async def reset_username(member: Member):
-    #   if str(member) == '1mpy':
-    #       chosen_username = str(illu_names[randint(0, (len(illu_names)) - 1)])
-    #       print(chosen_username)
-    #       await member.edit(nick=chosen_username)
 
     @bot.event
     async def on_member_update(before, after):
@@ -267,20 +265,19 @@ def main():
 
         if DEV_ENV == 'True':
             for i in bot.get_all_members():
-                print(f"{str(i.name)} ({i.status}) id is {i.id}")
+                print(f"{str(i.name)} ({i.status}) : {i.id}")
             print("Done!")
-
-
-
+        for i in bot.get_all_members():
+            watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
-        # await (bot.fetch_application_emojis)
 
-    # await channel.send(f"{emoji}")
-
-    # async
     get_hitlist()
     bot.run(TOKEN)
 
 
 if __name__ == "__main__":
     main()
+
+# Quickping List
+# Yappers = <@&1328843759764639895>
+# Pixel = <@487247155741065229>
