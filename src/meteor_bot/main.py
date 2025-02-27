@@ -248,7 +248,6 @@ def main():
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        print(f"Before : {before.nick}, After : {after.nick}")
         if str(after.nick) != 'Fish Boy' and str(after) == 'khaoslatet':
             await after.edit(nick='Fish Boy')
 
