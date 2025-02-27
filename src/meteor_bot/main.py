@@ -138,11 +138,12 @@ def main():
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
         if str(member.name) != 'realsonar':
-
+            print(f"{str(member.name)} ran command /vengeance" )
             await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
                                                     delete_after=3)
             for i in range(0, randint(10, 15)):
                 await channel.send(f"<@{member.id}>", delete_after=1)
+
         else:
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
@@ -269,6 +270,7 @@ def main():
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
             print("Done!")
+
         for i in bot.get_all_members():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
