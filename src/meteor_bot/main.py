@@ -39,6 +39,8 @@ def main():
     def profile_view(member):
         Profile = Query()
         profile_data = db().search(Profile.id == member.id)
+        print(f"Requesting profile data")
+        print(profile_data)
         user_avatar = member.avatar.url
 
         try:
@@ -208,16 +210,16 @@ def main():
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
-                # await message.channel.send(meta_knight)
+                await message.channel.send(meta_knight)
                 for i in watchlist:
                     if i['username'] == str(message.author):
-                        if i['spam_count'] == 2:
+                        if i['spam_count'] >= 2:
                             await timeout_user(message.author)
                             await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
                                                        reference=message)
                         i.update({'spam_count': (i['spam_count'] + 1)})
                         await sleep(60)
-                        i.update({'spam_count': 0})
+                        i.update({'spam_count': (i['spam_count'] - 1)})
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
