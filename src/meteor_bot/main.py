@@ -9,8 +9,11 @@ from datetime import *
 from asyncio import *
 
 load_dotenv("token.env")
-DEV_ENV = (getenv('DEV_ENV'))
-if DEV_ENV == 'True':
+if (getenv('DEV_ENV')) == 'True':
+    DEV_ENV = True
+else:
+    DEV_ENV = False
+if DEV_ENV:
     from lists import *
     from aioconsole import *
 else:
@@ -84,7 +87,7 @@ def main():
     async def send_messagee():
         global channel, index_of_msg
 
-        if DEV_ENV == 'True':
+        if DEV_ENV:
             if channel != bot.get_channel(956606255974199327):
                 channel = channel
             else:
@@ -124,29 +127,6 @@ def main():
             except Exception:
                 pass
 
-    @bot.tree.command(name='announce', description='Ping everyone individually')
-    async def ping_everyone(interaction):
-        msg = ''
-        for i in bot.get_all_members():
-            msg += f"<@{i.id}> "
-        await interaction.response.send_message(msg, delete_after=2)
-
-    @bot.tree.command(name='rules', description='Shows the server rules')
-    async def view_rules(interaction):
-        pass
-
-    @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
-    async def vengeance(interaction, channel: TextChannel, member: Member):
-        if str(member.name) != 'realsonar':
-            print(f"{str(member.name)} ran command /vengeance" )
-            await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
-                                                    delete_after=3)
-            for i in range(0, randint(10, 15)):
-                await channel.send(f"<@{member.id}>", delete_after=1)
-
-        else:
-            await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
-
     @bot.tree.command(name='viewprofile', description='View profiles of server members')
     async def smasher_profile_view(interaction, member: Member):
         embed = profile_view(member)
@@ -182,7 +162,7 @@ def main():
         if any(i in normalize('NFKD', ''.join(str(desc.lower()))) for i in american_words):
             passed = False
             await interaction.response.send_message("You thought.")
-        if DEV_ENV == 'True':
+        if DEV_ENV:
             passed = False
         if passed:
 
@@ -196,6 +176,33 @@ def main():
             embed = profile_view(interaction.user)
             await interaction.response.send_message("Updated your profile!", embed=embed)
 
+    @bot.tree.command(name='announce', description='Ping everyone individually')
+    async def ping_everyone(interaction):
+        if str(interaction.user) not in ascended_users:
+            await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
+        else:
+
+            msg = ''
+            for i in bot.get_all_members():
+                msg += f"<@{i.id}> "
+            await interaction.response.send_message(msg, delete_after=2)
+
+    @bot.tree.command(name='rules', description='Shows the server rules')
+    async def view_rules(interaction):
+        pass
+
+    @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
+    async def vengeance(interaction, channel: TextChannel, member: Member):
+        if str(member.name) not in ascended_users:
+            print(f"{str(member.name)} ran command /vengeance")
+            await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
+                                                    delete_after=3)
+            for i in range(0, randint(10, 15)):
+                await channel.send(f"<@{member.id}>", delete_after=1)
+
+        else:
+            await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
+
     async def timeout_user(member: Member):
         await member.timeout(timedelta(minutes=20), reason=f"Spam")
         print(f"Timouted {member.name}")
@@ -206,7 +213,7 @@ def main():
 
         print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
         message.content = normalize("NFKD", message.content)
-        if str(message.author) != 'Meteor#1277' and DEV_ENV != 'True':
+        if str(message.author) != 'Meteor#1277' and not DEV_ENV:
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
@@ -241,8 +248,9 @@ def main():
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        if str(after) == '':
-            pass
+        print(f"Before : {before.nick}, After : {after.nick}")
+        if str(after.nick) != 'Fish Boy' and str(after) == 'khaoslatet':
+            await after.edit(nick='Fish Boy')
 
     @bot.event
     async def on_message_edit(before, after):
@@ -266,7 +274,7 @@ def main():
         guild = bot.get_guild(906804682452779058)
         print(f'We have logged in as {bot.user}')
 
-        if DEV_ENV == 'True':
+        if DEV_ENV:
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
             print("Done!")
@@ -285,4 +293,4 @@ if __name__ == "__main__":
 # Quickping List
 # Yappers = <@&1328843759764639895>
 # Pixel = <@487247155741065229>
-#
+# Alga = <@721342642595692595>
