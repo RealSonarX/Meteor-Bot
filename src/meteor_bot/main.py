@@ -24,16 +24,16 @@ def main():
     intents = Intents.all()
     watchlist = []
 
-    def get_hitlist():
-        try:
-            f = open("hitlist.txt", "x")
-            hitlist = f.read().splitlines()
-            f.close()
-            return hitlist
-        except:
-            with open("hitlist.txt", "r") as f:
-                hitlist = f.read().splitlines()
-            return hitlist
+    async def check_spammer(member, increment, channel):
+        for i in watchlist:
+            if i['username'] == str(member):
+                if i['spam_count'] >= 20:
+                    await timeout_user(member)
+                    await channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
+                                               reference=message)
+                i.update({'spam_count': (i['spam_count'] + increment)})
+                await sleep(60)
+                i.update({'spam_count': (i['spam_count'] - increment)})
 
     def db():
         db = TinyDB('db.json')
@@ -181,7 +181,6 @@ def main():
         if str(interaction.user) not in ascended_users:
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
         else:
-
             msg = ''
             for i in bot.get_all_members():
                 msg += f"<@{i.id}> "
@@ -219,15 +218,7 @@ def main():
                 await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
-                for i in watchlist:
-                    if i['username'] == str(message.author):
-                        if i['spam_count'] >= 2:
-                            await timeout_user(message.author)
-                            await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
-                                                       reference=message)
-                        i.update({'spam_count': (i['spam_count'] + 1)})
-                        await sleep(60)
-                        i.update({'spam_count': (i['spam_count'] - 1)})
+                await check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
@@ -235,6 +226,7 @@ def main():
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
             elif 'roy' in message.content.lower():
+                await check_spammer(message.author, 5, message.channel)
                 if randint(0, 10) == 1:
                     await message.channel.send(roy)
                 elif randint(0, 10) == 2:
@@ -244,12 +236,13 @@ def main():
             elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (
                     str(message.author) == 'khaoslatet'):
                 await message.delete()
+                print('Latet moment')
 
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        if str(after.nick) != 'Fish Boy' and str(after) == 'khaoslatet':
-            await after.edit(nick='Fish Boy')
+        if str(after.nick) != 'George Fishington' and str(after) == 'khaoslatet':
+            await after.edit(nick='George Fishington')
 
     @bot.event
     async def on_message_edit(before, after):
@@ -282,7 +275,6 @@ def main():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
 
-    get_hitlist()
     bot.run(TOKEN)
 
 
