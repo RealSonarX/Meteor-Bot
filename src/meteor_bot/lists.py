@@ -25,9 +25,6 @@ roy = (
     'I wish Roy was real so I can kiss him and cuddle with him while he strokes my hair and whisperers in my ear '
     '"hyaa" and dominate me')
 
-american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
-
-banned_words = ['pookie', 'rex']
 
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
                    "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
@@ -66,4 +63,8 @@ rules = [
     "Common sense. Sometimes, it won't be made absolutely clear if something is against the rules, and that's when "
     "you use common sense. "
 
+
 ]
+american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
+
+banned_words = ['pookie', 'rex', 'teehee']
