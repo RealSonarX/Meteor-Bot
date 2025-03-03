@@ -24,15 +24,13 @@ def main():
     intents = Intents.all()
     watchlist = []
 
-    async def check_spammer(member, increment, channel, msg):
+    def check_spammer(member, increment, channel):
         for i in watchlist:
             if i['username'] == str(member):
                 if i['spam_count'] >= 20:
                     await timeout_user(member)
                     await channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
                                                reference=message)
-                else:
-                    await channel.send(msg)
                 i.update({'spam_count': (i['spam_count'] + increment)})
                 await sleep(60)
                 i.update({'spam_count': (i['spam_count'] - increment)})
@@ -230,7 +228,8 @@ def main():
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
-                await check_spammer(message.author, 10, message.channel, meta_knight)
+                await message.channel.send(meta_knight)
+                check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
@@ -239,10 +238,8 @@ def main():
                 await message.delete()
             elif 'roy' in message.content.lower():
                 if randint(0, 5) == 1:
-                    msg = roy[randint(0, (len(roy)-1))]
-                else:
-                    msg = ''
-                await check_spammer(message.author, 10, message.channel, msg)
+                    await message.channel.send(roy[randint(0, len(roy)-1)])
+                check_spammer(message.author, 10, message.channel)
 
             elif '@everyone' in message.content.lower() and str(message.author) not in ascended_users:
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
