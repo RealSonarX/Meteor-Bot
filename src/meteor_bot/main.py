@@ -24,7 +24,7 @@ def main():
     intents = Intents.all()
     watchlist = []
 
-    async def check_spammer(member, increment, channel):
+    def check_spammer(member, increment, channel):
         for i in watchlist:
             if i['username'] == str(member):
                 if i['spam_count'] >= 20:
@@ -229,7 +229,7 @@ def main():
                 await message.channel.send("No talking in this channel please!", delete_after=3)
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
-                await check_spammer(message.author, 10, message.channel)
+                check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv",
@@ -237,7 +237,7 @@ def main():
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
             elif 'roy' in message.content.lower():
-                await check_spammer(message.author, 10, message.channel)
+                check_spammer(message.author, 10, message.channel)
                 if randint(0, 5) == 1:
                     await message.channel.send(roy[randint(0, len(roy)-1)])
             elif '@everyone' in message.content.lower() and str(message.author) not in ascended_users:
