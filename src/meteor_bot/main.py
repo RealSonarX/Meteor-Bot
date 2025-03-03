@@ -247,7 +247,6 @@ def main():
                     str(message.author) == 'khaoslatet'):
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
                 await message.delete()
-                print('Latet moment')
 
 
     @bot.event
