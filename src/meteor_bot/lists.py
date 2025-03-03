@@ -19,7 +19,8 @@ roy = (
     "with your dick so you can stop plaguing this game with your bitch ass gameplay. I fucking hate "
     "your bitch ass long ass sword which has more range than my fucking boomerang like what the fuck "
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
-    "is brutally molested by 7 BBCs in an alleyway in Chicago.")
+    "is brutally molested by 7 BBCs in an alleyway in Chicago.", "Everybody should main Roy he's so cool and awesome", "Roy :star_struck:",
+'I wish Roy was real so I can kiss him and cuddle with him while he strokes my hair and whisperers in my ear "hyaa" and dominate me')
 
 american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
 
@@ -50,7 +51,7 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
 
 nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try "
                                                                                                                 "again!"]
-roy_happy = ["Everybody should main Roy he's so cool and awesome", "Roy :star_struck:"]
+
 
 ascended_users = ['realsonar', 'Meteor#1277']
 rules = [

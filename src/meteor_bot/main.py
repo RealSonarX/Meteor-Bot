@@ -121,8 +121,19 @@ def main():
                     for i in bot.get_all_channels():
                         if i.name == channel_name:
                             channel = bot.get_channel(i.id)
+                    await channel.send(f"{actual_msg}")
+                elif msg[0] == '/':
+                    msg = msg[1:]
+                    content = msg[1:]
+                    if msg[0] == 't':
 
-                await channel.send(f"{actual_msg}")
+                        for i in bot.get_all_members():
+
+                            if str(i.name) == content:
+                                await timeout_user(i)
+                else:
+                    await channel.send(f"{actual_msg}")
+
 
             except Exception:
                 pass
@@ -228,21 +239,21 @@ def main():
             elif 'roy' in message.content.lower():
                 await check_spammer(message.author, 5, message.channel)
                 if randint(0, 10) == 1:
-                    await message.channel.send(roy)
-                elif randint(0, 10) == 2:
-                    await message.channel.send(roy_happy[randint(0, len(roy_happy) - 1)])
+                    await message.channel.send(roy[randint(0, len(roy)-1)])
             elif '@everyone' in message.content.lower():
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
             elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (
                     str(message.author) == 'khaoslatet'):
+                await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
                 await message.delete()
                 print('Latet moment')
+
 
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        if str(after.nick) != 'George Fishington' and str(after) == 'khaoslatet':
-            await after.edit(nick='George Fishington')
+        if str(after.nick) != "Alga's Bitch" and str(after) == 'khaoslatet':
+            await after.edit(nick="Alga's Bitch")
 
     @bot.event
     async def on_message_edit(before, after):
@@ -269,12 +280,12 @@ def main():
         if DEV_ENV:
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
+
             print("Done!")
 
         for i in bot.get_all_members():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
-
     bot.run(TOKEN)
 
 
