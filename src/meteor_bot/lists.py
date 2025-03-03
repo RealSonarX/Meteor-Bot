@@ -61,10 +61,8 @@ rules = [
     "Know the line. Some teasing / banter is fine but stop it from ever getting to the point where it's a truly serious issue. "
     "No slurs. This should be obvious, but absolutely no slurs. Not as a joke, not as an insult, none of it.",
     "",
-    "Common sense. Sometimes, it won't be made absolutely clear if something is against the rules, and that's when "
-    "you use common sense. "
-
-
+    "Common sense. Sometimes, it won't be made absolutely clear if you should or shouldn't do something, and that's when "
+    "you use common sense. You all have the ability to think sensibly, use it."
 ]
 american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
 
