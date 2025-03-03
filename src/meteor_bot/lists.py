@@ -58,6 +58,7 @@ rules = [
     "community server, and as such, misogyny, racism etc. will not be tolerated.",
     "Keep it clean. No NSFW whatsoever. No I don't care if it's the funniest thing ever to you, just don't. This is "
     "not a place for that and it's frankly often very unpleasant. ",
+    "Know the line. Some teasing / banter is fine but stop it from ever getting to the point where it's a truly serious issue. "
     "No slurs. This should be obvious, but absolutely no slurs. Not as a joke, not as an insult, none of it.",
     "",
     "Common sense. Sometimes, it won't be made absolutely clear if something is against the rules, and that's when "
