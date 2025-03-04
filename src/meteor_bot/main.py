@@ -254,7 +254,8 @@ def main():
         channel = bot.get_channel(956606255974199327)
         if str(after.nick) != "Aegis's Pet" and str(after) == 'khaoslatet':
             await after.edit(nick="Aegis's Pet")
-
+        if str(after.nick) != 'Illu <3' and str(after) == 'alganom':
+            await after.edit(nick="Illu <3")
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
