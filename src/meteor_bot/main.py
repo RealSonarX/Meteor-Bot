@@ -199,7 +199,11 @@ def main():
 
     @bot.tree.command(name='rules', description='Shows the server rules')
     async def view_rules(interaction):
-        pass
+        channel = interaction.channel.name
+        counter = 0
+        for i in rules:
+            await channel.send(f"Rule {counter} : {i}")
+            counter += 1
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
