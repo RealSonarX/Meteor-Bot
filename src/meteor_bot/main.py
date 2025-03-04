@@ -224,8 +224,15 @@ def main():
     @bot.event
     async def on_message(message):
         quotes = bot.get_channel(931598462879944764)
+        if (message.type) == MessageType.reply:
 
-        print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
+            original_msg = message.reference.messageid
+
+            print(f"#{message.channel}  {str(message.author)}: {str(message.content)} (replied to {original_msg})")
+
+        else:
+            print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
+
         message.content = normalize("NFKD", message.content)
         if str(message.author) != 'Meteor#1277' and not DEV_ENV:
             if message.channel == quotes and message.attachments == []:

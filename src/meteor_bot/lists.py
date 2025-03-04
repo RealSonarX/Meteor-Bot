@@ -66,3 +66,5 @@ rules = [
 american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
 
 banned_words = ['pookie', 'rex', 'teehee']
+
+edgy_attack_quotes = []
