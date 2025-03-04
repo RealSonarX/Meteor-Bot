@@ -214,7 +214,7 @@ def main():
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
     async def timeout_user(member: Member):
-        await member.timeout(timedelta(minutes=1), reason=f"Spam")
+        await member.timeout(timedelta(minutes=20), reason=f"Spam")
         print(f"Timouted {member.name}")
 
     @bot.event
