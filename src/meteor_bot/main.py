@@ -214,7 +214,7 @@ def main():
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
     async def timeout_user(member: Member):
-        await member.timeout(timedelta(minutes=20), reason=f"Spam")
+        await member.timeout(timedelta(minutes=1), reason=f"Spam")
         print(f"Timouted {member.name}")
 
     @bot.event
@@ -252,8 +252,8 @@ def main():
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
-        if str(after.nick) != "Alga's Bitch" and str(after) == 'khaoslatet':
-            await after.edit(nick="Alga's Bitch")
+        if str(after.nick) != "Aegis's Pet" and str(after) == 'khaoslatet':
+            await after.edit(nick="Aegis's Pet")
 
     @bot.event
     async def on_message_edit(before, after):
@@ -280,6 +280,8 @@ def main():
         if DEV_ENV:
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
+                #try:
+                #    timeout_user(i)
 
             print("Done!")
 
@@ -296,3 +298,4 @@ if __name__ == "__main__":
 # Yappers = <@&1328843759764639895>
 # Pixel = <@487247155741065229>
 # Alga = <@721342642595692595>
+# Serry = <@586987213024133162>
