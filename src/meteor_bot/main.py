@@ -208,6 +208,7 @@ def main():
     @bot.tree.command(name='speak')
     async def speak(interaction, msg: str):
         channel = interaction.channel
+        await interaction.response.send_message("Done", ephemeral=True, delete_after=1)
         await channel.send(msg)
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
@@ -274,6 +275,8 @@ def main():
             await after.edit(nick="Aegis's Pet")
         if str(after.nick) != 'LF Eboy' and str(after) == 'alganom':
             await after.edit(nick="LF Eboy")
+        if str(after.nick) != 'Prism FTW' and str(after) == 'damiankirishima':
+            await after.edit(nick="Prism FTW")
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
