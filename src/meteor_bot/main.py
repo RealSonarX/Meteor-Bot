@@ -258,6 +258,8 @@ def main():
                     str(message.author) == 'khaoslatet'):
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
                 await message.delete()
+            elif 'neat' in message.content.lower():
+                await message.channel.send("Neat is a mod by Vazkii")
 
 
     @bot.event
@@ -265,8 +267,8 @@ def main():
         channel = bot.get_channel(956606255974199327)
         if str(after.nick) != "Aegis's Pet" and str(after) == 'khaoslatet':
             await after.edit(nick="Aegis's Pet")
-        if str(after.nick) != 'LF Egirl' and str(after) == 'alganom':
-            await after.edit(nick="LF Egirl")
+        if str(after.nick) != 'LF Eboy' and str(after) == 'alganom':
+            await after.edit(nick="LF Eboy")
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
