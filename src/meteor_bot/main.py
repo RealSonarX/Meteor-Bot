@@ -205,6 +205,11 @@ def main():
             await channel.send(f"Rule {counter} : {i}")
             counter += 1
 
+    @bot.tree.command(name='speak')
+    async def speak(interaction, msg: str):
+        channel = interaction.channel
+        await channel.send(msg)
+
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
     async def vengeance(interaction, channel: TextChannel, member: Member):
         if str(member.name) not in ascended_users:
