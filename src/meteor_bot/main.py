@@ -278,6 +278,7 @@ def main():
 
         if str(after.nick) != 'Prism FTW' and str(after) == 'damiankirishima':
             await after.edit(nick="Prism FTW")
+
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
