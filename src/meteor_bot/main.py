@@ -273,8 +273,7 @@ def main():
         channel = bot.get_channel(956606255974199327)
         if str(after.nick) != "Aegis's Pet" and str(after) == 'khaoslatet':
             await after.edit(nick="Aegis's Pet")
-        if str(after.nick) != 'LF Eboy' and str(after) == 'alganom':
-            await after.edit(nick="LF Eboy")
+
         if str(after.nick) != 'Prism FTW' and str(after) == 'damiankirishima':
             await after.edit(nick="Prism FTW")
     @bot.event
