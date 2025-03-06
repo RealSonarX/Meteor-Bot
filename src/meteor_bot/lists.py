@@ -52,7 +52,7 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
 nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try "
                                                                                                                 "again!"]
 
-ascended_users = ['realsonar', 'Meteor#1277']
+ascended_users = ['realsonar', 'Meteor#1277', 'alganom']
 rules = [
     "No bigotry. There's unfortunately too much of that in the real world that is still very real. This is a "
     "community server, and as such, misogyny, racism etc. will not be tolerated.",
