@@ -252,8 +252,8 @@ def main():
                                            delete_after=2)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
-            elif roy[-1].lower() in message.content.lower():
-                print(f"<@{message.author.id}> just won! Dm sonar for your prize! ")
+            elif roy[-1].lower() in str(message.content.lower()):
+                await message.channel.send(f"<@{message.author.id}> just won! Dm sonar for your prize! ")
             elif 'roy' in message.content.lower():
                 if randint(0, 5) == 1:
                     await message.channel.send(roy[randint(0, len(roy)-1)])
@@ -311,7 +311,7 @@ def main():
         for i in bot.get_all_members():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
-
+        print(roy[-1].lower())
     bot.run(TOKEN)
 
 

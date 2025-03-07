@@ -22,8 +22,7 @@ roy = (
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.", "Everybody should main Roy he's so cool and awesome",
     "Roy :star_struck:",
-    'I wish Roy was real so I can kiss him and cuddle with him while he strokes my hair and whisperers in my ear '
-    '"hyaa" and dominate me')
+    'I wish Roy was real so I can kiss him and cuddle with him while he strokes my hair and whisperers in my ear "hyaa" and dominate me')
 
 
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
