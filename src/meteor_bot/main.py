@@ -28,7 +28,7 @@ def main():
         for i in watchlist:
             if i['username'] == str(member):
                 if i['spam_count'] >= 20:
-                    await timeout_user(member)
+                    await timeout_user(member, 20)
                     await channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}",
                                                reference=message)
                 i.update({'spam_count': (i['spam_count'] + increment)})
@@ -130,7 +130,7 @@ def main():
                         for i in bot.get_all_members():
 
                             if str(i.name) == content:
-                                await timeout_user(i)
+                                await timeout_user(i, 10)
                 else:
                     await channel.send(f"{actual_msg}")
 
@@ -215,16 +215,15 @@ def main():
     async def vengeance(interaction, channel: TextChannel, member: Member):
         if str(member.name) not in ascended_users:
             print(f"{str(member.name)} ran command /vengeance")
-            await interaction.response.send_message(f"We do a little trolling", ephemeral=True,
-                                                    delete_after=3)
+            await interaction.response.send_message(f"We do a little trolling", ephemeral=True, delete_after=3)
             for i in range(0, randint(10, 15)):
                 await channel.send(f"<@{member.id}>", delete_after=1)
 
         else:
             await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
-    async def timeout_user(member: Member):
-        await member.timeout(timedelta(minutes=20), reason=f"Spam")
+    async def timeout_user(member: Member, duration: int):
+        await member.timeout(timedelta(minutes=duration), reason=f"Spam")
         print(f"Timouted {member.name}")
 
     @bot.event
@@ -261,7 +260,7 @@ def main():
                 await check_spammer(message.author, 10, message.channel)
             elif '@everyone' in message.content.lower() and str(message.author) not in ascended_users:
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
-                await timeout_user(message.author)
+                await timeout_user(message.author, 1440)
             elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (
                     str(message.author) == 'khaoslatet'):
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
