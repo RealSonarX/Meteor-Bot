@@ -94,7 +94,7 @@ def main():
                 channel = bot.get_channel(956606255974199327)
             try:
 
-                msg = await ainput("Input your message: ")
+                msg = await ainput(": ")
                 actual_msg = msg
                 if msg[0] == '#':
                     construction_msg = []
@@ -226,9 +226,9 @@ def main():
         quotes = bot.get_channel(931598462879944764)
         if (message.type) == MessageType.reply:
 
-            original_msg = message.reference.messageid
-
-            print(f"#{message.channel}  {str(message.author)}: {str(message.content)} (replied to {original_msg})")
+            original_msg = message.reference.resolved
+            original_msg = original_msg.content
+            print(f'#{message.channel}  {str(message.author)}: {str(message.content)} (replied to "{original_msg}")')
 
         else:
             print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
@@ -265,8 +265,8 @@ def main():
         channel = bot.get_channel(956606255974199327)
         if str(after.nick) != "Aegis's Pet" and str(after) == 'khaoslatet':
             await after.edit(nick="Aegis's Pet")
-        if str(after.nick) != 'Illu <3' and str(after) == 'alganom':
-            await after.edit(nick="Illu <3")
+        if str(after.nick) != 'I <3 Illu' and str(after) == 'alganom':
+            await after.edit(nick="I <3 Illu")
     @bot.event
     async def on_message_edit(before, after):
         author = before.author
