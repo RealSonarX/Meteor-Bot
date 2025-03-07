@@ -239,7 +239,7 @@ def main():
             print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
 
         message.content = normalize("NFKD", message.content)
-        if str(message.author) != 'Meteor#1277' and not DEV_ENV:
+        if str(message.author) != 'Meteor#1277'and DEV_ENV:
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
@@ -311,7 +311,6 @@ def main():
         for i in bot.get_all_members():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
-        print(roy[-1].lower())
     bot.run(TOKEN)
 
 
