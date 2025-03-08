@@ -25,6 +25,7 @@ roy = (
     'I wish Roy was real so I can kiss him and cuddle with him while he strokes my hair and whisperers in my ear "hyaa" and dominate me')
 
 
+
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
                    "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
                    "diddy kong": "diddy", "terry": "dolly", "donkey kong": "donkey", "duck hunt": "duckhunt",
