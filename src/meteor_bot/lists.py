@@ -23,7 +23,7 @@ roy = [
     "is brutally molested by 7 BBCs in an alleyway in Chicago.", "Everybody should main Roy he's so cool and awesome",
     "Roy :star_struck:"]
 
-
+pythra_copypasta = ''
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
                    "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
                    "diddy kong": "diddy", "terry": "dolly", "donkey kong": "donkey", "duck hunt": "duckhunt",
