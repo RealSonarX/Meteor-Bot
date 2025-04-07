@@ -257,6 +257,9 @@ def main():
                 if randint(0, 5) == 1:
                     await message.channel.send(roy[randint(0, len(roy)-1)])
                 await check_spammer(message.author, 10, message.channel)
+            elif 'aegis' in message.content.lower() or 'pythra' in message.content.lower():
+                if randint(0, 10) == 1:
+                    await message.channel.send(pythra_copypasta)
             elif '@everyone' in message.content.lower() and str(message.author) not in ascended_users:
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
                 await timeout_user(message.author, 1440)
