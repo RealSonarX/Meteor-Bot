@@ -24,7 +24,7 @@ roy = [
     "Roy :star_struck:"]
 
 pythra_copypasta = f"Aegis mains are the worst fucking humans on the planet. You are the epitome of human scum. You're entire existence is to make everyone else around you miserable. Your life purpose is to do absolutely nothing but piss everyone else off. You are despised by everyone, even your own fucking family thinks little of you. You make the world a worse place to be simply by being in it. You suck up fun like a vampire and starve everyone else of any joy or happiness. You are the single worst thing ever spawned. You play like a bitch, and you're carried beyond measure; because God forbid you take any time out of your fucking loser ass gooning sessions jacking it to Pyras tits like the lame ass bitch you are, to actually learn the game and be good. No, you'd rather just pick the baby mode of Smash and claim to be skilled. Trying to cope saying {"Aegis takes skill"} the only skill it requires is fucking button mashing. Fuck off you troglodytic, worthless, piece of shit cunt. Throw your router in to the nearest four way intersection so that you can stop ruining the game for everyone else, plaguing it with your miserable fucking existence."
-
+#
 
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
                    "chrom": "chrom", "cloud": "cloud", "daisy": "daisy", "king dedede": "dedede", "kazuya": "demon",
