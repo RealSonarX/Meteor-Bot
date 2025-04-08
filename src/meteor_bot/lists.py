@@ -32,7 +32,7 @@ pythra_copypasta = ("Aegis mains are the worst fucking humans on the planet. You
                     "because God forbid you take any time out of your fucking loser ass gooning sessions jacking it "
                     "to Pyras tits like the lame ass bitch you are, to actually learn the game and be good. No, "
                     "you'd rather just pick the baby mode of Smash and claim to be skilled. Trying to cope saying "
-                    f"{"Aegis takes skill"} the only skill it requires is fucking button mashing. Fuck off you "
+                    f"{'Aegis takes skill'} the only skill it requires is fucking button mashing. Fuck off you "
                     "troglodytic, worthless, piece of shit cunt. Throw your router in to the nearest four way "
                     "intersection so that you can stop ruining the game for everyone else, plaguing it with your "
                     "miserable fucking existence.")
