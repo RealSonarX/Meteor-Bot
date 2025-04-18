@@ -270,7 +270,7 @@ def main():
             elif 'neat' in message.content.lower():
                 await message.channel.send("Neat is a mod by Vazkii")
             elif 'neil' in message.content.lower():
-                await message.reply('A')
+                await message.reply('https://raw.githubusercontent.com/RealSonarX/Meteor-Bot/refs/heads/main/src/meteor_bot/neil.jpeg')
 
     @bot.event
     async def on_member_update(before, after):
