@@ -269,7 +269,8 @@ def main():
                 await message.delete()
             elif 'neat' in message.content.lower():
                 await message.channel.send("Neat is a mod by Vazkii")
-
+            elif 'neil' in message.content.lower():
+                await message.reply('A')
 
     @bot.event
     async def on_member_update(before, after):
