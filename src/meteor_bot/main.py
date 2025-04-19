@@ -39,49 +39,9 @@ def main():
         db = TinyDB('db.json')
         return db
 
-    def profile_view(member):
-        Profile = Query()
-        profile_data = db().search(Profile.id == member.id)
-        print(f"Requesting profile data")
-        print(profile_data)
-        user_avatar = member.avatar.url
-
-        try:
-            colour = profile_data[0]['colour']
-        except:
-            colour = 0x00b0f4
-        embed = Embed(colour=colour)
-        main = profile_data[0]['main']
-
-        maincodename = char_code_names[main.lower()]
-        alt = profile_data[0]['alt']
-        try:
-            desc = profile_data[0]['desc']
-        except:
-            desc = 'Awaiting description!'
-        try:
-            secondary = profile_data[0]['secondary']
-        except:
-            secondary = ''
-        embed.add_field(name=f"{member}",
-                        value=desc,
-                        inline=False)
-        embed.add_field(name="Main", value=f"{main.title()} ", inline=False)
-        if secondary != '':
-            embed.add_field(name="Secondary", value=f"{(profile_data[0]['secondary']).title()} ", inline=False)
-        embed.set_image(
-            url=f"https://raw.githubusercontent.com/joaorb64/StreamHelperAssets/refs/heads/main/games/ssbu/mural_art/{maincodename.lower()}_0{alt}.png")
-        embed.set_thumbnail(url=user_avatar)
-        return embed
-
     bot = commands.Bot(command_prefix='.', intents=intents)
 
     TOKEN = getenv('TOKEN')
-
-    pt = ["squirtle", "ivysaur", "charizard"]
-    shorthands = {"ganon": "ganondorf", "brawler": "mii_brawler", "krool": "kingkrool", "dk": "donkey_kong",
-                  "donkey kong": "donkey_kong"}
-    miis = ["mii_brawler", "mii_gunner", "mii_swordfighter"]
 
     @tasks.loop(seconds=3)
     async def send_messagee():
@@ -138,54 +98,6 @@ def main():
             except Exception:
                 pass
 
-    @bot.tree.command(name='viewprofile', description='View profiles of server members')
-    async def smasher_profile_view(interaction, member: Member):
-        embed = profile_view(member)
-        await interaction.response.send_message(embed=embed)
-
-    @bot.tree.command(name='updateprofile', description='Update profile')
-    @app_commands.choices(alt=[
-        app_commands.Choice(name="1", value=0),
-        app_commands.Choice(name="2", value=1),
-        app_commands.Choice(name="3", value=2),
-        app_commands.Choice(name="4", value=3),
-        app_commands.Choice(name="5", value=4),
-        app_commands.Choice(name="6", value=5),
-        app_commands.Choice(name="7", value=6),
-        app_commands.Choice(name="8", value=7)])
-    async def smasher_profile_update(interaction, main: str, alt: app_commands.Choice[int], secondary: str = '',
-                                     desc: str = "Awaiting description!"):
-        Profile = Query()
-        member = str(interaction.user)
-
-        main = main.lower()
-        alt = int(alt.value)
-        passed = True
-        try:
-            main_codename = char_code_names[main.lower()]
-            if secondary != '':
-                sec_codename = char_code_names[secondary.lower()]
-        except:
-            main_codename = 0
-            sec_codename = 0
-            await interaction.response.send_message("You didn't enter a valid character!")
-            passed = False
-        if any(i in normalize('NFKD', ''.join(str(desc.lower()))) for i in american_words):
-            passed = False
-            await interaction.response.send_message("You thought.")
-        if DEV_ENV:
-            passed = False
-        if passed:
-
-            if db().search(Profile.id == interaction.user.id) != []:
-                db().update({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
-                             'secondary': secondary},
-                            Profile.id == interaction.user.id)
-            else:
-                db().insert({'member': member, 'alt': alt, 'main': main, 'id': interaction.user.id, 'desc': desc,
-                             'secondary': secondary})
-            embed = profile_view(interaction.user)
-            await interaction.response.send_message("Updated your profile!", embed=embed)
 
     @bot.tree.command(name='announce', description='Ping everyone individually')
     async def ping_everyone(interaction):
