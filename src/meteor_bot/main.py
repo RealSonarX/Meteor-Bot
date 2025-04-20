@@ -19,7 +19,7 @@ if DEV_ENV:
 else:
     from .lists import *
 
-#
+
 def main():
     intents = Intents.all()
     watchlist = []
@@ -120,7 +120,13 @@ def main():
     @bot.tree.command(name='speak')
     async def speak(interaction, msg: str):
         channel = interaction.channel
-        await interaction.response.send_message("Done", ephemeral=True, delete_after=1)
+        await interaction.response.send_message("Done", ephemeral=True, delete_after=0.1)
+        await channel.send(msg)
+
+    @bot.tree.command(name='translate')
+    async def empty(interaction, msg: str):
+        channel = interaction.channel
+
         await channel.send(msg)
 
     @bot.tree.command(name='vengeance', description='MY REVENGGGGEEEE')
@@ -166,7 +172,7 @@ def main():
                 await message.delete()
 
             elif 'roy' in message.content.lower():
-                if randint(0, 5) == 1:
+                if randint(0, 10) == 1:
                     await message.channel.send(roy[randint(0, len(roy)-1)])
                 await check_spammer(message.author, 10, message.channel)
             elif 'aegis' in message.content.lower() or 'pythra' in message.content.lower():
