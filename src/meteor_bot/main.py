@@ -190,7 +190,7 @@ def main():
             elif 'neil' in message.content.lower():
                 await message.reply('https://raw.githubusercontent.com/RealSonarX/Meteor-Bot/refs/heads/main/src/meteor_bot/neil.jpeg')
             elif 'falco' in message.content.lower():
-                if randint(0, 7) == 1:
+                if randint(0, 5) == 1:
                     random_pick = randint(0, len(falco)-1)
                     await message.channel.send(f"Reason #{random_pick} that suggests Falco is a fascist : " +(falco[random_pick]))
     @bot.event
