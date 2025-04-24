@@ -189,7 +189,10 @@ def main():
                 await message.channel.send("Neat is a mod by Vazkii")
             elif 'neil' in message.content.lower():
                 await message.reply('https://raw.githubusercontent.com/RealSonarX/Meteor-Bot/refs/heads/main/src/meteor_bot/neil.jpeg')
-
+            elif 'falco' in message.content.lower():
+                if randint(0, 7) == 1:
+                    random_pick = randint(0, len(falco)-1)
+                    await message.channel.send(f"Reason #{random_pick} that suggests Falco is a fascist : " +(falco[random_pick]))
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
@@ -218,6 +221,9 @@ def main():
         print(f'We have logged in as {bot.user}')
 
         if DEV_ENV:
+            role = guild.get_role(1347306073727697017)
+
+            await role.edit(color=Color.yellow())
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
                 #try:
