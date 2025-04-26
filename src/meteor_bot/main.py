@@ -164,10 +164,10 @@ def main():
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
                 await check_spammer(message.author, 10, message.channel)
-            elif any(i in ''.join(str(message.content.lower())) for i in american_words):
-                await message.delete()
-                await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv ()",
-                                           delete_after=2)
+            #elif any(i in ''.join(str(message.content.lower())) for i in american_words):
+             #   await message.delete()
+              #  await message.channel.send(f"<@{message.author.id}> Outta here with that Amer*can nonsense bruv ()",
+                                        #   delete_after=2)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
 
