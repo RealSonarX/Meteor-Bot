@@ -167,6 +167,7 @@ def main():
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.delete()
                 await message.channel.send(no_america[randint(0, len(no_america)-1)])
+                await check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
 
