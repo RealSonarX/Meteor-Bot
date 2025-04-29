@@ -38,7 +38,7 @@ pythra_copypasta = ("Aegis mains are the worst fucking humans on the planet. You
                     "miserable fucking existence.")
 
 
-no_america = ["None of that gun nut nonsense here..."]
+no_america = ["None of that gun nut nonsense here...", "And nothing.", "Oh I don't think so.", "Weak weak and pathetic!", "Pipe down bruv", "You wot m8?"]
 
 
 char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie": "buddy", "captain falcon": "captain",
