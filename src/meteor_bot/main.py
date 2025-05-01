@@ -157,7 +157,7 @@ def main():
             print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
 
         message.content = normalize("NFKD", message.content)
-        if str(message.author) != 'Meteor#1277' and not DEV_ENV:
+        if str(message.author) != 'Meteor#1277' and DEV_ENV:
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
@@ -165,8 +165,9 @@ def main():
                 await message.channel.send(meta_knight)
                 await check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
+                await message.channel.send(no_america[randint(0, len(no_america) - 1)], reference=message,
+                                           delete_after=1)
                 await message.delete()
-                await message.channel.send(no_america[randint(0, len(no_america)-1)], reference=message, delete_after=1)
                 await check_spammer(message.author, 10, message.channel)
             elif any(i in ''.join(str(message.content.lower())) for i in banned_words):
                 await message.delete()
@@ -225,7 +226,7 @@ def main():
         if DEV_ENV:
             role = guild.get_role(1347306073727697017)
 
-            await role.edit(color=Color.yellow())
+
             for i in bot.get_all_members():
                 print(f"{str(i.name)} ({i.status}) : {i.id}")
                 #try:
