@@ -157,7 +157,7 @@ def main():
             print(f"#{message.channel}  {str(message.author)}: {str(message.content)}")
 
         message.content = normalize("NFKD", message.content)
-        if str(message.author) != 'Meteor#1277' and DEV_ENV:
+        if str(message.author) != 'Meteor#1277' and not DEV_ENV:
             if message.channel == quotes and message.attachments == []:
                 await message.delete()
                 await message.channel.send("No talking in this channel please!", delete_after=3)
