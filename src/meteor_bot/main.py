@@ -175,17 +175,13 @@ def main():
             elif 'roy' in message.content.lower():
                 if randint(0, 10) == 1:
                     await message.channel.send(roy[randint(0, len(roy)-1)])
-                await check_spammer(message.author, 10, message.channel)
-            elif 'aegis' in message.content.lower() or 'pythra' in message.content.lower():
-                if randint(0, 10) == 1:
+                await check_spammer(message.author, 5, message.channel)
+            elif 'aegis' in message.content.lower():
+                if randint(0, 15) == 1:
                     await message.channel.send(pythra_copypasta)
             elif '@everyone' in message.content.lower() and str(message.author) not in ascended_users:
                 await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
                 await timeout_user(message.author, 1440)
-            elif ('meat' in message.content.lower() or 'meet' in message.content.lower()) and (
-                    str(message.author) == 'khaoslatet'):
-                await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}", reference=message)
-                await message.delete()
             elif 'neat' in message.content.lower():
                 await message.channel.send("Neat is a mod by Vazkii")
             elif 'neil' in message.content.lower():

@@ -21,7 +21,7 @@ roy = [
     "your bitch ass long ass sword which has more range than my fucking boomerang like what the fuck "
     "there’s no way Roy is actually a character in this fucking game. Fuck you and I hope your family "
     "is brutally molested by 7 BBCs in an alleyway in Chicago.", "Everybody should main Roy he's so cool and awesome",
-    "Roy :star_struck:"]
+    "Roy :star_struck:", "Anybody complaining about Roy doesn't know the matchup. "]
 falco = ["Fascism is powered by ignorance. Look at his hitboxes. Look at that landing hitbox on fair. Look at uptilt. Look at how he can just say fuck you for trying to play footsies by pressing B. It's all designed to enable ignorance in gameplay and get away with it.", 'Favourite catchphrase? "Hands off my cock!". An obsession with sexual purity is a known hallmark of fascism.', "Fascists hate changing things up. Falco players all demonstrate this quality when they uptilt your shield four times in a row. The silver spooned bastards still get away with it though.", "The Roman empire. Loved eagles and birds of prey. Had very fascistic phases. The Nazi regime. Loved eagles and birds of prey. Was literally fascist. Falco probably loves eagles, and is literally a bird of prey. I doubt there's a coincidence.", "Just keeps spamming ignorant multihit hitboxes at you, reminiscent of blitzkrieg tactics.", "SPAMS UPTILT WHERE HE LITERALLY RAISES VIS RIGHT ARM AT AN ANGLE TO THE SKY", "Has technologically advanced military equipment but probably doesn't even use soap and only has cold showers.", "Nazi guns notoriously applied hitstun as well. This is one of many reasons that Fox escapes these allegations.", ]
 pythra_copypasta = ("Aegis mains are the worst fucking humans on the planet. You are the epitome of human scum. "
                     "You're entire existence is to make everyone else around you miserable. Your life purpose is to "
@@ -67,7 +67,7 @@ char_code_names = {"bayonetta": "bayonetta", "hero": "brave", "banjo and kazooie
 nope_list = ["Oh, I don't think so.", "Don't try it!", "You really thought.", "And nothing.", "Access denied!", "Try "
                                                                                                                 "again!"]
 
-ascended_users = ['realsonar', 'Meteor#1277', 'alganom']
+ascended_users = ['doxxfire', 'Meteor#1277', 'pixelagent007']
 rules = [
     "No bigotry. There's unfortunately too much of that in the real world that is still very real. This is a "
     "community server, and as such, misogyny, racism etc. will not be tolerated.",
