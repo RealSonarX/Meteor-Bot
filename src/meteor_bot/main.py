@@ -164,6 +164,10 @@ def main():
             if 'meta knight' in message.content.lower():
                 await message.channel.send(meta_knight)
                 await check_spammer(message.author, 10, message.channel)
+            elif str(message.author) == 'pixelagent007' and '<@1330104399904641097>' in message.content.lower():
+                await message.channel.send(f"{nope_list[randint(0, (len(nope_list) - 1))]}")
+                await message.delete()
+                await timeout_user(message.author, 20)
             elif any(i in ''.join(str(message.content.lower())) for i in american_words):
                 await message.channel.send(no_america[randint(0, len(no_america) - 1)], reference=message,
                                            delete_after=1)
@@ -237,6 +241,7 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
 
 # Quickping List
