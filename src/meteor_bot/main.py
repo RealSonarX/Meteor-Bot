@@ -196,6 +196,9 @@ def main():
                     await message.channel.send(f"Reason #{random_pick} that suggests Falco is a fascist: " +(falco[random_pick]))
             elif 'debug' in message.content.lower():
                 await message.channel.send("DEBUGGING !23")
+            elif str(message.author) == 'realsonar' and '<@1330104399904641097> execute my will' in message.content.lower():
+                await message.channel.send('...')
+
     @bot.event
     async def on_member_update(before, after):
         channel = bot.get_channel(956606255974199327)
