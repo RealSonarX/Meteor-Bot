@@ -98,7 +98,9 @@ def main():
             except Exception:
                 pass
 
-
+    @bot.tree.command(name='rip', description='Music')
+    async def play_music(interaction, link : str):
+        await interaction.response.send_message('Playing! ')
     @bot.tree.command(name='announce', description='Ping everyone individually')
     async def ping_everyone(interaction):
         if str(interaction.user) not in ascended_users:
@@ -240,6 +242,7 @@ def main():
         for i in bot.get_all_members():
             watchlist.append({'username': i.name, 'spam_count': 0})
         send_messagee.start()
+
     bot.run(TOKEN)
 
 

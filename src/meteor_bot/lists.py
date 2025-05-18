@@ -78,7 +78,7 @@ rules = [
     "Common sense. Sometimes, it won't be made absolutely clear if you should or shouldn't do something, and that's when "
     "you use common sense. You all have the ability to think sensibly, use it."
 ]
-american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r']
+american_words = ['color', 'favorite', 'flavor', 'realize', 'neighbor', 'c*lor', 'col*r', 'soccer']
 
 banned_words = ['pookie', 'rex', 'teehee']
 
