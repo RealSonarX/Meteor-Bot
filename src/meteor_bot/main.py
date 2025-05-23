@@ -119,6 +119,14 @@ def main():
             await channel.send(f"Rule {counter} : {i}")
             counter += 1
 
+    @bot.tree.command(name='showclip', description='Shows the server rules')
+    @app_commands.choices(choices=[
+        app_commands.Choice(name="Outplaying with Steve", value="rock")
+    ])
+    async def show_clip(interaction, clip: app_commands.Choice[str]):
+        channel = interaction.channel.name
+        await channel.send(clip.value)
+
     @bot.tree.command(name='speak')
     async def speak(interaction, msg: str):
         channel = interaction.channel
