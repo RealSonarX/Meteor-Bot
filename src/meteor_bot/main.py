@@ -34,15 +34,11 @@ def main():
                 i.update({'spam_count': (i['spam_count'] + increment)})
                 await sleep(60)
                 i.update({'spam_count': (i['spam_count'] - increment)})
-
     def db():
         db = TinyDB('db.json')
         return db
-
     bot = commands.Bot(command_prefix='.', intents=intents)
-
     TOKEN = getenv('TOKEN')
-
     @tasks.loop(seconds=3)
     async def send_messagee():
         global channel, index_of_msg
@@ -69,7 +65,6 @@ def main():
                         else:
                             channel_name += i
                             index_counter += 1
-
                         if not channel_find:
                             break
                     actual_msg = ''
@@ -119,8 +114,8 @@ def main():
             await channel.send(f"Rule {counter} : {i}")
             counter += 1
 
-    @bot.tree.command(name='showclip', description='Shows the server rules')
-    @app_commands.choices(choices=[
+    @bot.tree.command(name='showclip', description='Shows clips')
+    @app_commands.choices(clip=[
         app_commands.Choice(name="Outplaying with Steve", value="rock")
     ])
     async def show_clip(interaction, clip: app_commands.Choice[str]):
@@ -130,8 +125,11 @@ def main():
     @bot.tree.command(name='speak')
     async def speak(interaction, msg: str):
         channel = interaction.channel
-        await interaction.response.send_message("Done", ephemeral=True, delete_after=0.1)
-        await channel.send(msg)
+        if '@everyone' not in msg and '@here' not in msg:
+            await interaction.response.send_message("Done", ephemeral=True, delete_after=0.1)
+            await channel.send(msg)
+        else:
+            await interaction.response.send_message(nope_list[randint(0, (len(nope_list) - 1))])
 
     @bot.tree.command(name='translate')
     async def empty(interaction, msg: str):
@@ -211,7 +209,7 @@ def main():
 
     @bot.event
     async def on_member_update(before, after):
-        channel = bot.get_channel(956606255974199327)
+        pass
 
 
     @bot.event
